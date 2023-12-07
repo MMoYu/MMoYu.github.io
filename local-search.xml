@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>ALSA声卡驱动</title>
+    <link href="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/"/>
+    <url>/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/</url>
+    
+    <content type="html"><![CDATA[<h4 id="前言">前言</h4><p>Linux ALSA声卡驱动的学习和资料整理；<br>主要参考自：<a href="http://blog.csdn.net/droidphone">http://blog.csdn.net/droidphone</a>  <a href="https://blog.csdn.net/DroidPhone">DroidPhone</a> 大神资料</p><hr><h4 id="概述">概述</h4><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {        panel.getElementsByClassName('fold-title')[0].onclick = function() {            panel.classList.toggle("collapsed");            panel.classList.toggle("expanded");        }    });})(document);</script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+      <tag>Audio</tag>
+      
+      <tag>Android</tag>
+      
+      <tag>ALSA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>常用开发工具整理</title>
     <link href="/2023/12/07/%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%95%B4%E7%90%86/"/>
     <url>/2023/12/07/%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%95%B4%E7%90%86/</url>

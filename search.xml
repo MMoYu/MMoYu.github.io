@@ -1381,4 +1381,27 @@ AIDL、HIDL都是用于跨进程通信；将上层与底层分隔开</p>
         <tag>Private</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ALSA声卡驱动</title>
+    <url>/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/</url>
+    <content><![CDATA[<h4 id="前言">前言</h4>
+<p>Linux ALSA声卡驱动的学习和资料整理；<br>
+主要参考自：<a href="http://blog.csdn.net/droidphone">http://blog.csdn.net/droidphone</a>  <a href="https://blog.csdn.net/DroidPhone">DroidPhone</a> 大神资料</p>
+<hr>
+<h4 id="概述">概述</h4>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
+    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
+        panel.getElementsByClassName('fold-title')[0].onclick = function() {
+            panel.classList.toggle("collapsed");
+            panel.classList.toggle("expanded");
+        }
+    });
+})(document);</script>]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Audio</tag>
+        <tag>Android</tag>
+        <tag>ALSA</tag>
+      </tags>
+  </entry>
 </search>
