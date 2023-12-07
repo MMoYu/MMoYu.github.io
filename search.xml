@@ -1466,7 +1466,7 @@ Control interface：控制接口<br>
 <p>cpu dai：在嵌入式系统里面通常指 SoC 的 I2S、PCM 总线控制器，负责把音频数据从 I2S tx FIFO 搬运到 CODEC（这是回放的情形，录制则方向相反）。cpu_dai 通过 <mark>snd_soc_register_dai()</mark> 来注册。注：DAI 是 Digital Audio Interface 的简称，分为 cpu_dai 和 codec_dai，这两者通过 I2S/PCM 总线连接；AIF 是 Audio Interface 的简称，嵌入式系统中一般是 I2S 和 PCM 接口。</p>
 </li>
 <li>
-<p>pcm dma：负责把 dma buffer 中的音频数据搬运到 I2S tx FIFO。值得留意的是：某些情形下是不需要 dma 操作的，比如 Modem 和 CODEC 直连，因为 Modem 本身已经把数据送到 FIFO 了，这时只需启动 codec_dai 接收数据即可；该情形下，Machine 驱动 dai_link 中需要设定 .platform_name = “snd-soc-dummy”, 这是虚拟 dma 驱动，实现见 sound/soc/soc-utils.c。音频 dma 驱动通过 <mark>snd_soc_register_platform()</mark> 来注册，故也常用 platform 来指代音频 dma 驱动（这里的 platform 需要与 SoC Platform 区分开）</p>
+<p>pcm dma(<mark>这里还不清楚</mark>)：负责把 dma buffer 中的音频数据搬运到 I2S tx FIFO。值得留意的是：某些情形下是不需要 dma 操作的，比如 Modem 和 CODEC 直连，因为 Modem 本身已经把数据送到 FIFO 了，这时只需启动 codec_dai 接收数据即可；该情形下，Machine 驱动 dai_link 中需要设定 .platform_name = “snd-soc-dummy”, 这是虚拟 dma 驱动，实现见 sound/soc/soc-utils.c。音频 dma 驱动通过 <mark>snd_soc_register_platform()</mark> 来注册，故也常用 platform 来指代音频 dma 驱动（这里的 platform 需要与 SoC Platform 区分开）</p>
 </li>
 </ul>
 <p>= =》Platform驱动的主要作用是完成<mark>音频数据的传输</mark>;</p>
@@ -1476,6 +1476,13 @@ Control interface：控制接口<br>
 <ul>
 <li>对音频信号(PCM、PDM、I2S等)进行A/D或者D/A转换，如ADC麦克上行需将模拟信号转换为数字信号，下行播放需将数字音频转为模拟音频播放；</li>
 <li>对音频信号做处理，如音量控制、功率调节、EQ控制</li>
+</ul>
+<p>= =》Codec 字面意思是编解码器，但芯片里面的功能部件很多，常见的有 AIF、DAC、ADC、Mixer、PGA、Line-in、Line-out，有些高端的 codec 芯片还有 EQ、DSP、SRC、DRC、AGC、Echo-Canceller、Noise-Suppression 等部件。</p>
+<hr>
+<h4 id="Machine">Machine</h4>
+<p>— 具体的器件</p>
+<ul>
+<li>通过配置 dai_link 把 cpu_dai、codec_dai、modem_dai 各个音频接口给链结成一条条音频链路，然后注册 snd_soc_card。和上面两个不一样，Platform 和 CODEC 驱动一般是可以重用的，而 Machine 有它特定的硬件特性，几乎是不可重用的。所谓的硬件特性指：SoC Platform 与 Codec 的差异；dais之间的链结方式；通过某个 GPIO 打开 Amplifier；通过某个 GPIO 检测耳机插拔；使用某个时钟如 MCLK/External-OSC 作为 I2S、CODEC 的时钟源等等。</li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
     [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
