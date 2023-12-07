@@ -23,14 +23,17 @@
 <meta property="og:site_name" content="MMoYu′s hut">
 <meta property="og:description" content="Advanced Linux Sound Architecture">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mmoyu.github.io/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172254948.png">
+<meta property="og:image" content="https://mmoyu.github.io/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172708924.png">
 <meta property="article:published_time" content="2023-12-07T07:17:42.000Z">
-<meta property="article:modified_time" content="2023-12-07T07:26:02.777Z">
+<meta property="article:modified_time" content="2023-12-07T09:37:00.500Z">
 <meta property="article:author" content="MMoYu">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Audio">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="ALSA">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mmoyu.github.io/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172254948.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -237,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          322 字
+          1.9k 字
         
       </span>
     
@@ -248,7 +251,7 @@
         
         
         
-          3 分钟
+          16 分钟
         
       </span>
     
@@ -311,11 +314,69 @@
             
               <div class="markdown-body">
                 
-                <h4 id="前言">前言</h4>
+                <h3 id="前言">前言</h3>
 <p>Linux ALSA声卡驱动的学习和资料整理；<br>
-主要参考自：<a target="_blank" rel="noopener" href="http://blog.csdn.net/droidphone">http://blog.csdn.net/droidphone</a>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/DroidPhone">DroidPhone</a> 大神资料</p>
+主要参考自:<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/DroidPhone">DroidPhone</a><br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lifan3a/articles/5576806.html">Linux ALSA 系统架构 - 苍月代表我 - 博客园 (cnblogs.com)</a><br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46525308/article/details/115409657">Linux ALSA驱动框架分析之（一）：架构介绍_struct snd_device 结构体解析-CSDN博客</a><br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/zyuanyun/article/details/59170418">Linux ALSA 音频系统：物理链路篇-CSDN博客</a></p>
 <hr>
-<h4 id="概述">概述</h4>
+<hr>
+<h3 id="概述">概述</h3>
+<p>ALSA：Advanced Linux Sound Architecture，目前主流的Linux音频体系架构，旨在全面支持音频和MIDI功能；<br>
+ALSA开源详情：<a target="_blank" rel="noopener" href="https://www.alsa-project.org/wiki/Main_Page">AlsaProject (alsa-project.org)</a></p>
+<hr>
+<hr>
+<h3 id="ALSA驱动框架">ALSA驱动框架</h3>
+<p><img src="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172254948.png" srcset="/img/loading.gif" lazyload alt="image-20231207172254948"><br>
+= =》主要为用户空间、内核空间、硬件层 = =》驱动主要关注内核层、硬件层</p>
+<ul>
+<li>
+<p>ALSA Lib：用户层库函数，API接口</p>
+</li>
+<li>
+<p>ALSA Core：ALSA 核心层，抽象出数据结构和接口，向上提供逻辑设备（PCM/CTL/MIDI/TIMER/…）系统调用，向下驱动硬件设备（Machine/I2S/DMA/CODEC）</p>
+</li>
+<li>
+<p>ASOC Core：ASoc是建立在标准ALSA Core基础上，为了更好支持嵌入式系统和应用于移动设备的音频Codec的一套软件体系</p>
+</li>
+<li>
+<p><mark>Hardware Driver</mark>：音频硬件设备驱动，主要为Platform、Machine、Codec三部分组成</p>
+</li>
+<li>
+<p>Hardware：实际硬件设备</p>
+</li>
+<li>
+<p>硬件框架：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">+------------------------------------------+<br>|<span class="hljs-string">                 Machine                  </span>|<br>|<span class="hljs-string">  +--------------+      +--------------+  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">   Platform   </span>|<span class="hljs-string">      </span>|<span class="hljs-string">     Codec    </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">              </span>|<span class="hljs-string"> I2S  </span>|<span class="hljs-string">              </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">       cpu_dai</span>|<span class="hljs-string">&lt;----&gt;</span>|<span class="hljs-string">codec_dai     </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">              </span>|<span class="hljs-string">      </span>|<span class="hljs-string">              </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  +--------------+      +--------------+  </span>|<br>+------------------------------------------+<br></code></pre></td></tr></table></figure>
+<p><img src="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172708924.png" srcset="/img/loading.gif" lazyload alt="image-20231207172708924"></p>
+<p>Audio Interface：数据接口<br>
+Control interface：控制接口<br>
+= =》一般控制接口使用 I2C；数据接口使用 I2S；如ADC麦克风阵列，通常将器件挂载在I2C上，I2S去传输数据；</p>
+</li>
+</ul>
+<hr>
+<hr>
+<h3 id="Hardware-Driver-驱动层">Hardware Driver/驱动层</h3>
+<h4 id="Platform">Platform</h4>
+<p>— 某一款SoC平台的音频模块，主流Soc平台：高通、MTK、三星、RK等，主要与CPU型号有关；一般来讲Platform一般都细分为两部分：</p>
+<ul>
+<li>
+<p>cpu dai：在嵌入式系统里面通常指 SoC 的 I2S、PCM 总线控制器，负责把音频数据从 I2S tx FIFO 搬运到 CODEC（这是回放的情形，录制则方向相反）。cpu_dai 通过 <mark>snd_soc_register_dai()</mark> 来注册。注：DAI 是 Digital Audio Interface 的简称，分为 cpu_dai 和 codec_dai，这两者通过 I2S/PCM 总线连接；AIF 是 Audio Interface 的简称，嵌入式系统中一般是 I2S 和 PCM 接口。</p>
+</li>
+<li>
+<p>pcm dma：负责把 dma buffer 中的音频数据搬运到 I2S tx FIFO。值得留意的是：某些情形下是不需要 dma 操作的，比如 Modem 和 CODEC 直连，因为 Modem 本身已经把数据送到 FIFO 了，这时只需启动 codec_dai 接收数据即可；该情形下，Machine 驱动 dai_link 中需要设定 .platform_name = “snd-soc-dummy”, 这是虚拟 dma 驱动，实现见 sound/soc/soc-utils.c。音频 dma 驱动通过 <mark>snd_soc_register_platform()</mark> 来注册，故也常用 platform 来指代音频 dma 驱动（这里的 platform 需要与 SoC Platform 区分开）</p>
+</li>
+</ul>
+<p>= =》Platform驱动的主要作用是完成<mark>音频数据的传输</mark>;</p>
+<hr>
+<h4 id="Codec">Codec</h4>
+<p>— 音频编解码器</p>
+<ul>
+<li>对音频信号(PCM、PDM、I2S等)进行A/D或者D/A转换，如ADC麦克上行需将模拟信号转换为数字信号，下行播放需将数字音频转为模拟音频播放；</li>
+<li>对音频信号做处理，如音量控制、功率调节、EQ控制</li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
     [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
         panel.getElementsByClassName('fold-title')[0].onclick = function() {
