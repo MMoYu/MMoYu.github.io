@@ -82,7 +82,7 @@ Control interface：控制接口<br>
 <h3 id="音频物理链路概念">音频物理链路概念</h3>
 <ul>
 <li>
-<p>dai_link：machine 驱动中定义的音频数据链路，它指定链路用到的 codec、codec_dai、cpu_dai、platform；</p>
+<p>dai_link：machine 驱动中定义的音频数据链路，它指定链路用到的<mark> codec、codec_dai、cpu_dai、platform</mark>；</p>
 <div class="fold collapsed">
         <div class="fold-title">
             示例
@@ -92,6 +92,7 @@ Control interface：控制接口<br>
 
         </div>
     </div>
+<p>= =》一个音频系统可能有多个音频数据链路，如media、voice或者如示例所示Mic Array；都需要定义多个dai_link；</p>
 </li>
 <li></li>
 </ul>
