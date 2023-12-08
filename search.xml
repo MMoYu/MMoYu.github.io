@@ -77,6 +77,12 @@ Control interface：控制接口<br>
 <hr>
 <h4 id="数据流向示意图：">数据流向示意图：</h4>
 <figure class="highlight haskell"><table><tr><td class="code"><pre><code class="hljs haskell">        copy_from_user           <span class="hljs-type">DMA</span>                 <span class="hljs-type">I2S</span>           <span class="hljs-type">DAC</span><br>              ^                   ^                   ^             ^<br>+---------+   |    +----------+   |   +-----------+   |   +-----+   |   +------+<br>|userspace+--------&gt;<span class="hljs-type">DMA</span> <span class="hljs-type">Buffer</span>+-------&gt;<span class="hljs-type">I2S</span> <span class="hljs-type">TX</span> <span class="hljs-type">FIFO</span>+-------&gt;<span class="hljs-type">CODEC</span>+-------&gt;<span class="hljs-type">SPK</span>/<span class="hljs-type">HP</span>|<br>+---------+        +----------+       +-----------+       +-----+       +------+<br></code></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h3 id="音频物理链路概念">音频物理链路概念</h3>
+<ul>
+<li></li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
     [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
         panel.getElementsByClassName('fold-title')[0].onclick = function() {
