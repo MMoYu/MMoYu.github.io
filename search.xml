@@ -18,8 +18,8 @@ ALSA开源详情：<a href="https://www.alsa-project.org/wiki/Main_Page">AlsaPro
 <hr>
 <hr>
 <h3 id="ALSA驱动框架">ALSA驱动框架</h3>
-<p><img src="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172254948.png" alt="image-20231207172254948"><br>
-= =》主要为用户空间、内核空间、硬件层 = =》驱动主要关注内核层、硬件层</p>
+<p><img src="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231212094004662.png" alt="image-20231212094004662"></p>
+<p>= =》主要为用户空间、内核空间、硬件层 = =》驱动主要关注内核层、硬件层</p>
 <ul>
 <li>
 <p>ALSA Lib：用户层库函数，API接口</p>
@@ -38,7 +38,7 @@ ALSA开源详情：<a href="https://www.alsa-project.org/wiki/Main_Page">AlsaPro
 </li>
 <li>
 <p>硬件框架：</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><code class="hljs gherkin">+------------------------------------------+<br>|<span class="hljs-string">                 Machine                  </span>|<br>|<span class="hljs-string">  +--------------+      +--------------+  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">   Platform   </span>|<span class="hljs-string">      </span>|<span class="hljs-string">     Codec    </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">              </span>|<span class="hljs-string"> I2S  </span>|<span class="hljs-string">              </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  </span>|<span class="hljs-string">       cpu_dai</span>|<span class="hljs-string">&lt;----&gt;</span>|<span class="hljs-string">codec_dai     </span>|<span class="hljs-string">  </span>|<br>|<span class="hljs-string">  +--------------+      +--------------+  </span>|<br>+------------------------------------------+<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">+------------------------------------------+<br>|                 Machine                  |<br>|  +--------------+      +--------------+  |<br>|  |   Platform   |      |     Codec    |  |<br>|  |              | I2S  |              |  |<br>|  |       cpu_dai|&lt;----&gt;|codec_dai     |  |<br>|  +--------------+      +--------------+  |<br>+------------------------------------------+<br></code></pre></td></tr></table></figure>
 <p><img src="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/image-20231207172708924.png" alt="image-20231207172708924"></p>
 <p>Audio Interface：数据接口<br>
 Control interface：控制接口<br>
@@ -75,7 +75,7 @@ Control interface：控制接口<br>
 所谓的硬件特性指：SoC Platform 与 Codec 的差异；dais之间的链结方式；通过某个 GPIO 打开 Amplifier；通过某个 GPIO 检测耳机插拔；使用某个时钟如 MCLK/External-OSC 作为 I2S、CODEC 的时钟源等等。</li>
 </ul>
 <hr>
-<h4 id="数据流向示意图：">数据流向示意图：</h4>
+<h4 id="数据流向示意图">数据流向示意图</h4>
 <figure class="highlight haskell"><table><tr><td class="code"><pre><code class="hljs haskell">        copy_from_user           <span class="hljs-type">DMA</span>                 <span class="hljs-type">I2S</span>           <span class="hljs-type">DAC</span><br>              ^                   ^                   ^             ^<br>+---------+   |    +----------+   |   +-----------+   |   +-----+   |   +------+<br>|userspace+--------&gt;<span class="hljs-type">DMA</span> <span class="hljs-type">Buffer</span>+-------&gt;<span class="hljs-type">I2S</span> <span class="hljs-type">TX</span> <span class="hljs-type">FIFO</span>+-------&gt;<span class="hljs-type">CODEC</span>+-------&gt;<span class="hljs-type">SPK</span>/<span class="hljs-type">HP</span>|<br>+---------+        +----------+       +-----------+       +-----+       +------+<br></code></pre></td></tr></table></figure>
 <hr>
 <h4 id="音频物理链路概念">音频物理链路概念</h4>
