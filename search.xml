@@ -1737,4 +1737,73 @@ AIDL、HIDL都是用于跨进程通信；将上层与底层分隔开</p>
         <tag>IDE</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Linux-makefile</title>
+    <url>/2023/12/25/Linux-makefile/</url>
+    <content><![CDATA[<h4 id="草稿">草稿</h4>
+<ul>
+<li>
+<p>= 是最基本的赋值</p>
+<p>:= 是覆盖之前的值</p>
+<p>?= 是如果没有被赋值过就赋予等号后面的值</p>
+<p>+= 是添加等号后面的值</p>
+<p>1、$&lt;     第一个依赖文件，若有多个目标文件，依次编译依赖文件</p>
+<p>2、$^     所有依赖文件的集合</p>
+<p>3、$@     目标文件的集合</p>
+</li>
+<li>
+<p>ccflags-y asflags-y和ldflags-y<br>
+ccflags-y asflags-y和ldflags-y这三个变量的值分别对应编译、汇编、链接时的参数。</p>
+</li>
+</ul>
+<p>ccflags-y 变量在当前 Makefile 中有效<br>
+//这里添加在ccflags-y下，通用编译选项<br>
+//外部模块头文件的单独目录放置<br>
+//表明当前目录编译需要依赖外部这个路径的头文件</p>
+<ul>
+<li>
+<p>subdir-ccflags-y, subdir-asflags-y<br>
+这两个编译选项与ccflags-y和asflags-y效果是一致的，只是添加了subdir-前缀，意味着这两个编译选项对本目录和所有的子目录都有效</p>
+</li>
+<li>
+<pre><code class="language-makefile">cur_dir := $(dir $(lastword $(MAKEFILE_LIST)))
+//取当前脚本的所在路径：$0
+//$(dir xxx)函数用来从一个路径名中截取目录的部分= =&gt;获取文件所在目录
+//$(lastword xxx) ：以空格为结束符的最后一个字符
+//$(MAKEFILE_LIST) ： 当前文件，包括是谁include它的文件
+
+
+obj_s := $(patsubst $(cur_dir)%,%,$(wildcard $(cur_dir)src/*.S))
+obj_c := $(patsubst $(cur_dir)%,%,$(wildcard $(cur_dir)src/*.c))
+obj_cpp := $(patsubst $(cur_dir)%,%,$(wildcard $(cur_dir)src/*.cpp))
+//大致是可支持的文件格式
+
+obj-y := $(obj_c:.c=.o) $(obj_s:.S=.o) $(obj_cpp:.cpp=.o)
+//将对应的文件格式编译成对应的.o文件
+
+subdir-ccflags-y += \
+	-Iapps/luxshare/aw88166/inc
+
+subdir-ccflags-y += -Wno-uninitialized
+subdir-ccflags-y += -Wno-maybe-uninitialized
+//subdir-ccflags-y 编译依赖 对本目录和所有的子目录都有效
+//Wno-maybe-uninitialized暂不清楚，应该是某种忽略机制
+</code></pre>
+</li>
+<li></li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
+    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
+        panel.getElementsByClassName('fold-title')[0].onclick = function() {
+            panel.classList.toggle("collapsed");
+            panel.classList.toggle("expanded");
+        }
+    });
+})(document);</script>]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Make</tag>
+        <tag>Makefile</tag>
+      </tags>
+  </entry>
 </search>
