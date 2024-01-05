@@ -16,24 +16,25 @@
   <meta name="author" content="MMoYu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Private">
+    <meta name="description" content="Linux 驱动笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="功耗优化">
-<meta property="og:url" content="https://mmoyu.github.io/2023/12/01/%E5%8A%9F%E8%80%97%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="Linux_dts">
+<meta property="og:url" content="https://mmoyu.github.io/2023/10/16/Linux-dts/index.html">
 <meta property="og:site_name" content="MMoYu′s hut">
-<meta property="og:description" content="Private">
+<meta property="og:description" content="Linux 驱动笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-01T02:59:43.000Z">
-<meta property="article:modified_time" content="2023-12-22T07:06:50.000Z">
+<meta property="article:published_time" content="2023-10-16T03:32:43.654Z">
+<meta property="article:modified_time" content="2023-12-28T03:35:03.971Z">
 <meta property="article:author" content="MMoYu">
-<meta property="article:tag" content="Private">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Dts">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>功耗优化 - MMoYu′s hut</title>
+  <title>Linux_dts - MMoYu′s hut</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">功耗优化</span>
+            <span id="subtitle">Linux_dts</span>
           
         </div>
 
@@ -222,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-01 10:59" pubdate>
-          2023年12月1日 上午
+        <time datetime="2023-10-16 11:32" pubdate>
+          2023年10月16日 中午
         </time>
       </span>
     
@@ -234,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          988 字
         
       </span>
     
@@ -245,7 +246,7 @@
         
         
         
-          14 分钟
+          9 分钟
         
       </span>
     
@@ -303,33 +304,59 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">功耗优化</h1>
+            <h1 id="seo-header">Linux_dts</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：14 天前
+                    本文最后更新于：5 天前
                   
                 
               </p>
             
             
-              
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="07cd947c729149bdc55f5fb8ff62f404ff117b3ccc0f1262153c9162b9143d74">6c7403a67b5863e4a8c92de30a55f4066425e7e12627cdc07210d046d1f9fd97a2af8a6a008e91765f84d6ab656db6462985ad34ee317a3ac3de0b99efcec29b4ab82ac63ad0cfd20123325214fd78d0b3573c2001ae6de0c6b9066ec550279ac86f60637d5e217e457cf13bcb5447d4ae6a027c6727ba806512a641ca3a9012c9a86a12dc161e3c01ca6ba86c6598c16cff4bc234cef6aef077f2732c6b99c2e94ad54807650e17076545292ead7ebe3296610e64d24e06dffa581ca252aa4376304a5e111758b5f136ffc878c74e99e2f625a07fb945c4d35d88c08e2f54046131acd2f0763592131179b694cadae13bb7b4b7e7f2200728851f55b661a165485f7bfced02c4110c3d1dfdc591792486c3cb43075be1c516659cd5228fab9cc006ce3903b7476ea58b64a4e3a283f962b9626042bd391e69930ac32ce1e8249d517da8d15d01ab0b3c2b406526d860077aec348872d398f12763f4ec42cb1c5d997082dc543b8130cfc1803577dfd22179799bb3540448731c87fcab47641b04437ac0a577364484a926a7abdda5712b0579f19b700478a551c91b905386dda389b592b7567fddfe69fea69f8862ac0deaefe6238cf8ae929522578350e97ed0ca68587db064bd6bdbf3b98dd42328bff43381c609ddafab42ccfc7d1ac6e172531fef89e5c39fb1577221392e6d2e29bbc6386c0cf7b3ab4dc1a7e255f13118699cc8a5528c175df37c7a15b0dbd194a471c429566ad464ef5ee1f692624c296e2fd97df3569543ed07724eb2ba93988c5cbc637bb42d88aadf7f30af53ad59bd15c99d77c82c0cdbb7de24d7dd7c7afb945c6f569191566b5e5620f423b25530adac2d9d492a6f5d28fe1e76e0621af1da7fe2d529ff5803fe44f1b6f4e9c7943ab15002b4b01056cb2fbac264295403a4caf939af7c2ff91ad85689cd34bc139dca7ab1c983198269922b5522751f9af000d9832346f8445b36f240e82ada34e0d3932ef84dd416c6d885af65fe17394402d4110376722fbb05022062eb366e2306d10a8a2265d440888a7a9073197dbbaf3e7d5c320f677d5a4fc2fc8dfed640ca4af855524d69ebbcf813e8bc07d7d3cd7160d2cd1d4cf744328698aab42c4d63162fd105b5ed502af2d3a77e</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
-              
-
-              
+              <div class="markdown-body">
+                
+                <h2 id="DTS-Device-Tree-Source">DTS - Device Tree Source</h2>
+<p>— 纷繁芜杂，如星星点点；点清且明，如月映波光</p>
+<h3 id="概述">概述</h3>
+<p>— DTS是一种描述==硬件的数据结构==，起源于OF（OpenFirmware）；将驱动代码和设备硬件信息相互隔离；设备树对硬件信息进行抽象，驱动代码则负责逻辑处理 == 》 大量减少了内核当中的冗余代码；</p>
+<ul>
+<li>DTS：设备树的源文件，硬件的相应信息都在其中；
+<ul>
+<li>每一款硬件一般一个主控，==一个主控SOC对应一个DTS文件==</li>
+</ul>
+</li>
+<li>DTSI：设备树头文件扩展名，相当于C语言的头文件；
+<ul>
+<li>一个SOC会对应多个设备，这些设备对于不同的SOC来说都是相同的，因此将这些==相同的DTS配置==抽象为一个.dtsi文件，SOC使用设备时，在DTS文件中包含该DTSI即可；</li>
+<li>DTSI一般用于描述SOC的内部外设信息，如CPU架构、主频、IIC、SPI、外设(Motor、Fan等)；</li>
+<li>==相同节点的配置，dts中的配置会覆盖dtsi的配置，后编译的dtsi也会覆盖之前同节点的dtsi配置==，注意检查节点配置是否重复配置或默认配置先后顺序；</li>
+</ul>
+</li>
+<li>DTC：DTS的编译工具，相当于众所周知的GCC；在内核源码scripts/dtc路径下已包含DTC相关工具</li>
+<li>DTB：DTS被DTC编译后的二进制格式设备树文件，才可被linux内核解析；
+<ul>
+<li>DTB通过Bootloader引导加载到内核当中；</li>
+</ul>
+</li>
+</ul>
+<h3 id="DTS框架">DTS框架</h3>
+<ul>
+<li>Linux kernel设备树路径：ke’r</li>
+</ul>
+<p>手动编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">./scripts/dtc/dtc -I dts -O dtb -o xxx.dtb <span class="hljs-built_in">arch</span>/arm/boot/dts/xxx.dts // 编译 dts 为 dtb<br>./scripts/dtc/dtc -I dtb -O dts -o xxx.dts <span class="hljs-built_in">arch</span>/arm/boot/dts/xxx.dtb // 反编译 dtb 为 dts<br></code></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
+    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
+        panel.getElementsByClassName('fold-title')[0].onclick = function() {
+            panel.classList.toggle("collapsed");
+            panel.classList.toggle("expanded");
+        }
+    });
+})(document);</script>
+                
+              </div>
             
             <hr/>
             <div>
@@ -339,7 +366,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Private/" class="print-no-link">#Private</a>
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Dts/" class="print-no-link">#Dts</a>
       
     </div>
   
@@ -351,8 +380,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>功耗优化</div>
-      <div>https://mmoyu.github.io/2023/12/01/功耗优化/</div>
+      <div>Linux_dts</div>
+      <div>https://mmoyu.github.io/2023/10/16/Linux-dts/</div>
     </div>
     <div class="license-meta">
       
@@ -364,13 +393,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月1日</div>
+          <div>2023年10月16日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月22日</div>
+          <div>2023年12月28日</div>
         </div>
       
       
@@ -401,9 +430,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/07/%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%95%B4%E7%90%86/" title="常用开发工具整理">
+                      <a href="/2023/10/16/%E5%9B%BE%E7%89%87%E8%89%B2%E5%8D%A1Emoji%E7%BC%96%E7%A0%81/" title="图片色卡Emoji编码">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">常用开发工具整理</span>
+                        <span class="hidden-mobile">图片色卡Emoji编码</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -411,8 +440,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/30/%E8%BD%A6%E8%BD%BD%E6%99%BA%E8%83%BD%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%A1%88/" title="车载智能硬件方案">
-                        <span class="hidden-mobile">车载智能硬件方案</span>
+                      <a href="/2023/10/16/%E5%BB%BA%E7%AB%8B%E7%BC%98%E7%94%B1/" title="建立缘由">
+                        <span class="hidden-mobile">建立缘由</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -604,23 +633,6 @@
     });
   });
 </script>
-
-
-  
-  <script defer>
-    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
-      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
-        var hbePrefix = document.querySelector('hbe-prefix');
-        hbePrefix.parentElement.classList.add('markdown-body');
-        Fluid.utils.retry(function() {
-          if (Fluid.boot && Fluid.boot.refresh) {
-            Fluid.boot.refresh();
-            return true;
-          }
-        }, 100, 10);
-      })
-    }
-  </script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
