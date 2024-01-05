@@ -19,20 +19,20 @@
     <meta name="description" content="初稿">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux_Audio基本概念">
-<meta property="og:url" content="https://mmoyu.github.io/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:url" content="https://mmoyu.github.io/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="MMoYu′s hut">
 <meta property="og:description" content="初稿">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png">
-<meta property="article:published_time" content="2023-12-30T12:19:57.284Z">
-<meta property="article:modified_time" content="2023-12-07T08:10:58.000Z">
+<meta property="og:image" content="https://mmoyu.github.io/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
+<meta property="og:image" content="https://mmoyu.github.io/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png">
+<meta property="og:image" content="https://mmoyu.github.io/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png">
+<meta property="article:published_time" content="2023-12-07T08:10:58.000Z">
+<meta property="article:modified_time" content="2024-01-05T01:59:19.736Z">
 <meta property="article:author" content="MMoYu">
 <meta property="article:tag" content="Audio">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mmoyu.github.io/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
+<meta name="twitter:image" content="https://mmoyu.github.io/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-30 20:19" pubdate>
-          2023年12月30日 晚上
+        <time datetime="2023-12-07 16:10" pubdate>
+          2023年12月7日 下午
         </time>
       </span>
     
@@ -313,7 +313,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 个月前
+                    本文最后更新于：3 小时前
                   
                 
               </p>
@@ -403,14 +403,14 @@
 <h6 id="PCM">PCM:</h6>
 <p>脉冲编码调制的完整过程，简单概括为：<strong>采样，量化，编码</strong>。<br>
 —通过等时间隔（即采样率时钟周期）采样将模拟信号数字化的方法；<br>
-—理论上可以传输单声道，双声道立体声（I2S）和多声道（TDM）<img src="/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png" srcset="/img/loading.gif" lazyload alt="image-20230906150439768"></p>
+—理论上可以传输单声道，双声道立体声（I2S）和多声道（TDM）<img src="/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png" srcset="/img/loading.gif" lazyload alt="image-20230906150439768"></p>
 <hr>
 <h6 id="PDM">PDM</h6>
 <p>—PDM（Pulse Density Modulation）是一种用数字信号表示模拟信号的调制方法。同为将模拟量转换为数字量的方法</p>
 <p>—在以PDM方式作为模数转换方法的应用接收端，需要用到抽取滤波器（Decimation Filter）将密密麻麻的0和1代表的密度分量转换为幅值分量，而PCM得到的就已经是幅值相关的数字分量。图20示意为通过PDM方式数字化的正弦波。</p>
-<p><img src="/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png" srcset="/img/loading.gif" lazyload alt="image-20230906151408106"></p>
+<p><img src="/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png" srcset="/img/loading.gif" lazyload alt="image-20230906151408106"></p>
 <p>PDM_CLK的上升沿采样左声道数据，在PDM_CLK下降沿采样右声道数据，具体如下所示：<br>
-<img src="/2023/12/30/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png" srcset="/img/loading.gif" lazyload alt="image-20230906152439748"></p>
+<img src="/2023/12/07/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png" srcset="/img/loading.gif" lazyload alt="image-20230906152439748"></p>
 <hr>
 <h6 id="I2S">I2S</h6>
 <ul>
@@ -424,8 +424,10 @@
 </ul>
 </li>
 <li>
-<p>I2S信号线</p>
-<p>— 串行时钟线 SCK = BLCK = 位时钟线</p>
+<p>I2S信号线<br>
+— <mark>只定义了三根信号线</mark>: 位时钟线、左右声道时钟线、数据传输线</p>
+<blockquote>
+<p>— 时钟信号线 SCK/SCLK = BLCK = 位时钟线</p>
 <ul>
 <li>==SCK的频率 = 声道数 * 采样频率 * 采样位数==</li>
 </ul>
@@ -438,9 +440,10 @@
 <p>— 串行数据线 SD</p>
 <ul>
 <li>就是用二进制补码表示的音频数据。I2S串行数据在传输的时候，由高位(MSB)到低位(LSB)依次进行传输<br>
-SDI：数据输入端口； SDO：数据输出端口</li>
+<mark>SDI：数据输入端口； SDO：数据输出端口</mark></li>
 </ul>
-<p>— 主时钟线 MCLK</p>
+</blockquote>
+<p>— 主时钟线 MCLK <mark>额外加的,由master做主，I2S协议中没有定义这个</mark></p>
 <ul>
 <li>MCLK的频率 = 256或者512 * ==采样频率==</li>
 </ul>
@@ -529,7 +532,7 @@ SDI：数据输入端口； SDO：数据输出端口</li>
   <div class="license-box my-3">
     <div class="license-title">
       <div>Linux_Audio基本概念</div>
-      <div>https://mmoyu.github.io/2023/12/30/Linux_Audio基本概念/</div>
+      <div>https://mmoyu.github.io/2023/12/07/Linux_Audio基本概念/</div>
     </div>
     <div class="license-meta">
       
@@ -541,13 +544,13 @@ SDI：数据输入端口； SDO：数据输出端口</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月30日</div>
+          <div>2023年12月7日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月7日</div>
+          <div>2024年1月5日</div>
         </div>
       
       
@@ -578,9 +581,9 @@ SDI：数据输入端口； SDO：数据输出端口</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/30/Linux-dts/" title="Linux_dts">
+                      <a href="/2023/12/18/daily-learning/" title="daily learning">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux_dts</span>
+                        <span class="hidden-mobile">daily learning</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -588,8 +591,8 @@ SDI：数据输入端口； SDO：数据输出端口</li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/25/Linux-makefile/" title="Linux-makefile">
-                        <span class="hidden-mobile">Linux-makefile</span>
+                      <a href="/2023/12/07/ALSA%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/" title="ALSA音频系统">
+                        <span class="hidden-mobile">ALSA音频系统</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
