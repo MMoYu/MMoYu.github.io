@@ -219,9 +219,9 @@ Control interface：控制接口<br>
   <entry>
     <title>Linux_dts</title>
     <url>/2023/12/28/Linux-dts/</url>
-    <content><![CDATA[<h2 id="DTS-Device-Tree-Source">DTS - Device Tree Source</h2>
+    <content><![CDATA[<h1>DTS - Device Tree Source</h1>
 <p>— 纷繁芜杂，如星星点点；点清且明，如月映波光</p>
-<h3 id="概述">概述</h3>
+<h2 id="概述">概述</h2>
 <p>— DTS是一种描述==硬件的数据结构==，起源于OF（OpenFirmware）；将驱动代码和设备硬件信息相互隔离；设备树对硬件信息进行抽象，驱动代码则负责逻辑处理 == 》 大量减少了内核当中的冗余代码；</p>
 <ul>
 <li>DTS：设备树的源文件，硬件的相应信息都在其中；
@@ -243,16 +243,41 @@ Control interface：控制接口<br>
 </ul>
 </li>
 </ul>
-<h3 id="DTS框架">DTS框架</h3>
+<h2 id="DTS框架">DTS框架</h2>
 <ul>
-<li>Linux kernel设备树路径：ke’r</li>
+<li>Linux kernel设备树路径：</li>
 </ul>
 <p>手动编译</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./scripts/dtc/dtc -I dts -O dtb -o xxx.dtb <span class="hljs-built_in">arch</span>/arm/boot/dts/xxx.dts // 编译 dts 为 dtb<br>./scripts/dtc/dtc -I dtb -O dts -o xxx.dts <span class="hljs-built_in">arch</span>/arm/boot/dts/xxx.dtb // 反编译 dtb 为 dts<br></code></pre></td></tr></table></figure>
 <hr>
 <hr>
-<h3 id="自行添加dts节点和代码的优势">自行添加dts节点和代码的优势</h3>
+<h2 id="dts注意事项">dts注意事项</h2>
+<h3 id="1-自行添加dts节点和代码的优势">1. 自行添加dts节点和代码的优势</h3>
 <p>— 对于某些开发中常见的功能，可以改代码，使用dts的参数的方法；有利于后续调试仅修改dts参数，尽量解耦合；</p>
+<hr>
+<h3 id="2-确定项目DTS所在的位置">2. 确定项目DTS所在的位置</h3>
+<p>— 基于RK平台</p>
+<h4 id="方法一">方法一</h4>
+<ul>
+<li>./build.sh lunch<br>
+<img src="/2023/12/28/Linux-dts/image-20231010134901614.png" alt="image-20231010134901614"></li>
+<li>查看对应的deconfig<br>
+<img src="/2023/12/28/Linux-dts/image-20231010135041497.png" alt="image-20231010135041497"></li>
+<li>查看细节<br>
+<img src="/2023/12/28/Linux-dts/image-20231010135115312.png" alt="image-20231010135115312"></li>
+<li>在对应的dts文件里面找包含的DTS和DTSI即可</li>
+</ul>
+<h4 id="法二">法二</h4>
+<ul>
+<li>
+<p>进入output路径，打开.config<br>
+<img src="/2023/12/28/Linux-dts/image-20231102144014071.png" alt="image-20231102144014071"></p>
+</li>
+<li>
+<p>即可看到相应的dts</p>
+<p><img src="/2023/12/28/Linux-dts/image-20231102144156362.png" alt="image-20231102144156362"></p>
+</li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
     [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
         panel.getElementsByClassName('fold-title')[0].onclick = function() {
