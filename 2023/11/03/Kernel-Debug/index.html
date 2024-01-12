@@ -24,7 +24,7 @@
 <meta property="og:description" content="mpiling and debugging method of Kernel based-on Linux OS">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-03T03:10:42.000Z">
-<meta property="article:modified_time" content="2024-01-05T08:41:02.406Z">
+<meta property="article:modified_time" content="2024-01-08T07:36:51.387Z">
 <meta property="article:author" content="MMoYu">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Kernel">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          3.9k 字
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          32 分钟
+          33 分钟
         
       </span>
     
@@ -310,7 +310,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 天前
+                    本文最后更新于：4 天前
                   
                 
               </p>
@@ -318,27 +318,27 @@
             
               <div class="markdown-body">
                 
-                <h3 id="Linux-Kernel驱动调试">Linux-Kernel驱动调试</h3>
+                <h1>Linux-Kernel驱动调试</h1>
 <p>— echo 0 &gt; /proc/sys/kernel/sysrq 关闭   1开启   内核日志</p>
-<h4 id="DMESG">DMESG</h4>
+<h2 id="DMESG">DMESG</h2>
 <p>—dmesg指令打印的内容只与kernel相关，它的log源于内核缓冲区</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">//实时监控dmesg日志输出信息</span><br><span class="hljs-selector-attr">[root@RedHat_test ~]</span># watch <span class="hljs-string">&quot;dmesg | tail -20&quot;</span><br><br><span class="hljs-comment">//输出dmesg至文档</span><br>dmesg &gt; xx<span class="hljs-selector-class">.log</span><br>==&gt; exit后adb pull xx<span class="hljs-selector-class">.log</span> C:\Users\xxxxx<br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="GPIO">GPIO</h4>
+<h2 id="GPIO">GPIO</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//查看gpio信息</span><br>cd sys/kernel/debug<br>cat gpio<br><br># 使能引脚GPIO1_C4<br>echo <span class="hljs-number">52</span> &gt; /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">export</span></span><br><span class="hljs-class"></span><br><span class="hljs-class"># 设置引脚为输入模式</span><br><span class="hljs-class"><span class="hljs-title">echo</span> <span class="hljs-title">in</span> &gt;</span> /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">gpio52</span>/<span class="hljs-title">direction</span></span><br><span class="hljs-class"># 读取引脚的值</span><br><span class="hljs-class"><span class="hljs-title">cat</span> /<span class="hljs-title">sys</span>/<span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">gpio52</span>/<span class="hljs-title">value</span></span><br><span class="hljs-class"></span><br><span class="hljs-class"># 设置引脚为输出模式</span><br><span class="hljs-class"><span class="hljs-title">echo</span> <span class="hljs-title">out</span> &gt;</span> /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">gpio52</span>/<span class="hljs-title">direction</span></span><br><span class="hljs-class"># 设置引脚为低电平</span><br><span class="hljs-class"><span class="hljs-title">echo</span> 0 &gt;</span> /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">gpio52</span>/<span class="hljs-title">value</span></span><br><span class="hljs-class"># 设置引脚为高电平</span><br><span class="hljs-class"><span class="hljs-title">echo</span> 1 &gt;</span> /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">gpio52</span>/<span class="hljs-title">value</span></span><br><span class="hljs-class"></span><br><span class="hljs-class"># 复位引脚</span><br><span class="hljs-class"><span class="hljs-title">echo</span> 52 &gt;</span> /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">gpio</span>/<span class="hljs-title">unexport</span></span><br><span class="hljs-class"></span><br><span class="hljs-class"><span class="hljs-title">GPIO</span>被占用会报错，可能这个个引脚已被使用，需在设备树中自行查找</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="input事件">input事件</h4>
+<h2 id="input事件">input事件</h2>
 <p>— 查看linux下事件</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看总共有几个事件<br> ls /dev/input/<br> <br># 查看event对应的设备信息<br>cat /proc/bus/iio/devices<br><br># 直接读取事件的输入<br>cat /dev/input/event4<br><br><span class="hljs-meta"># evtest</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="ADC">ADC</h4>
+<h2 id="ADC">ADC</h2>
 <p>— 一般ADC接口有两种：温度传感器，逐次逼近ADC</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://wiki.t-firefly.com/zh_CN/ROC-RK3568-PC/driver_adc.html"> ADC 使用 — Firefly Wiki (t-firefly.com)</a></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"># TS-ADC(Temperature Sensor)：支持两通道，时钟频率必须低于<span class="hljs-number">800</span>KHZ<br># SAR-ADC(Successive Approximation Register)：支持六通道单端<span class="hljs-number">10</span>位的SAR-ADC，时钟频率必须小于<span class="hljs-number">13</span>MHZ。<br><br># 获取所有的ADC值<br>cat /sys/bus/iio/devices/iio\:device0/in_voltage*_raw<br>==&gt; 逐次逼近ADC：<span class="hljs-number">1.8</span>v上拉，<span class="hljs-number">10</span>位采样率，因此读出来的值为<span class="hljs-number">1024</span>,实际电压计算公式：Vresult = (<span class="hljs-number">1800</span>mv * 读出来的值) / <span class="hljs-number">1023</span>;<br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="UART-串口">UART-串口</h4>
+<h2 id="UART-串口">UART-串口</h2>
 <table>
 <thead>
 <tr>
@@ -359,13 +359,13 @@
 </table>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"># 检查串口设备是否成功使能<br>ls /dev/tty*<br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="FAN">FAN</h4>
+<h2 id="FAN">FAN</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看风扇状态<br>cat /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">thermal</span>/<span class="hljs-title">cooling_device0</span>/<span class="hljs-title">cur_state</span></span><br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="I2C">I2C</h4>
+<h2 id="I2C">I2C</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看i2c总线是否开启<br>ls /dev/i2c-*<br><br>==&gt; 使用第三方i2c-tools 工具<br># 检测当前系统有几组I2C总线<br>i2cdetect -l<br><br># 查看指定I2C总线的挂载情况<br>i2cdetect -a <span class="hljs-number">3</span><br>i2cdetect -r <span class="hljs-number">3</span><br>i2cdetect -y <span class="hljs-number">3</span> <span class="hljs-comment">//如显示i2c3的挂载情况</span><br><br># i2cdump 读取指定设备上的全部寄存器的值<br>i2cdump -y(自动执行yes) -f <span class="hljs-number">0</span> <span class="hljs-number">0x30</span> <span class="hljs-comment">//读取I2c0总线上0x30地址里面的数据</span><br><br># 读取指定IIC设备的某个寄存器的值，如下读取地址为<span class="hljs-number">0x30</span>器件中的<span class="hljs-number">0x01</span>寄存器值。<br>i2cget -f -y <span class="hljs-number">3</span> <span class="hljs-number">0x30</span> <span class="hljs-number">0x01</span><br><br># 写入指定IIC设备的某个寄存器的值，如下设置地址为<span class="hljs-number">0x30</span>器件中的<span class="hljs-number">0x01</span>寄存器值为<span class="hljs-number">0x02</span>；<br>i2cset -f -y <span class="hljs-number">3</span> <span class="hljs-number">0x30</span> <span class="hljs-number">0x01</span> <span class="hljs-number">0x02</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="SPI">SPI</h4>
+<h2 id="SPI">SPI</h2>
 <table>
 <thead>
 <tr>
@@ -398,19 +398,22 @@
 </table>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"># 检查SPI设备<br>ls /dev/spi*<br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="PWM设备">PWM设备</h4>
+<h2 id="PWM设备">PWM设备</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看pwm是否开启<br>ls /sys/<span class="hljs-class"><span class="hljs-keyword">class</span>/<span class="hljs-title">pwm</span>/</span><br><span class="hljs-class"></span><br><span class="hljs-class">示例：</span><br><span class="hljs-class"><span class="hljs-title">pwm1</span>-&gt;</span>pwmchip1<br>pwm5-&gt;pwmchip2<br>pwm7-&gt;pwmchip3<br><br>==&gt; 操作PWM<br># 将指定pwm导出到用户空间<br>echo <span class="hljs-number">0</span> &gt; /sys/class/pwm/pwmchip1/export<br><br># 设置pwm周期 单位为ns<br>echo <span class="hljs-number">1000000</span> &gt; /sys/class/pwm/pwmchip1/pwm0/period<br><br># 设置占空比<br>echo <span class="hljs-number">500000</span> &gt; /sys/class/pwm/pwmchip1/pwm0/duty_cycle<br><br># 设置pwm极性<br>echo <span class="hljs-string">&quot;normal&quot;</span> &gt; /sys/class/pwm/pwmchip1/pwm0/polarity<br><br># 使能pwm<br>echo <span class="hljs-number">1</span> &gt; /sys/class/pwm/pwmchip1/pwm0/enable<br><br># 取消将pwm3导出到用户空间<br>echo <span class="hljs-number">0</span> &gt; /sys/class/pwm/pwmchip1/unexport<br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="Interrupts-中断信息">Interrupts 中断信息</h4>
+<h2 id="Interrupts-中断信息">Interrupts 中断信息</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//查看Linux内核的中断信息</span><br>cat /proc/interrupts   <span class="hljs-comment">//这个主要是硬件中断信息</span><br>==&gt;hp-det-gpio = &lt;&amp;gpio4 RK_PA4 GPIO_ACTIVE_LOW&gt;; 耳机设置后会看到headset中断<br>中断号 CPU0  CPU1  CPU2  CPU3使用次数                                   中断名字<br><span class="hljs-number">119</span>:    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>        rockchip_gpio_irq   <span class="hljs-number">4</span> Edge      headset_detect<br><br><br>cat /proc/softirqs     <span class="hljs-comment">//软中断</span><br><br><br>cat /sys/kernel/irq/xxx <span class="hljs-comment">//可以看到具体的中断信息</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h4 id="音频功能调试-Linux">音频功能调试-Linux</h4>
+<h2 id="音频功能调试-Linux">音频功能调试-Linux</h2>
 <p>— Linux 使用alsa；Android使用tinyalsa</p>
 <ul>
 <li>Lingx 音频调试方法</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看当前已注册的声卡<br>cat /proc/asound/cards<br><br># 获取录音设备<br>aplay -l<br><br># 获取录音设备<br>arecord -l<br><br># 查看声卡驱动目录<br>ls /dev/snd/<br><br># 列出可以控制card <span class="hljs-number">1</span>的控制器<br>amixer controls -c <span class="hljs-number">1</span><br><br># 列出所有card <span class="hljs-number">1</span>控制器能配置的值<br>amixer contents -c <span class="hljs-number">1</span><br><br># 查看声卡<span class="hljs-number">0</span>控制器<span class="hljs-number">2</span>的可配置的值<br>amixer -Dhw:<span class="hljs-number">0</span> cget numid=<span class="hljs-number">2</span><br>amixer -c <span class="hljs-number">0</span> cget numid=<span class="hljs-number">2</span><br><br># 设置声卡<span class="hljs-number">0</span>控制<span class="hljs-number">2</span>的值为<span class="hljs-number">3</span><br>amixer -Dhw:<span class="hljs-number">0</span> cset numid=<span class="hljs-number">2</span> <span class="hljs-number">3</span><br>amixer -c <span class="hljs-number">0</span> cset numid=<span class="hljs-number">2</span> <span class="hljs-number">3</span><br><br># 图形化查看当前信息<br>alsamixer<br><br># 指定声卡<span class="hljs-number">0</span>播放音频文件<br>aplay -D hw:<span class="hljs-number">0</span> test.wav<br>aplay -c <span class="hljs-number">0</span> test.wav<br><br># 使用声卡<span class="hljs-number">0</span>，cd音质，录制<span class="hljs-number">10</span>s<br>arecord -f cd -Dhw:<span class="hljs-number">1</span> -d <span class="hljs-number">10</span> test.wav<br><br># 使用card <span class="hljs-number">1</span>录制并使用card <span class="hljs-number">1</span>进行播放<br>sudo arecord -f cd -Dhw:<span class="hljs-number">1</span> | aplay -Dhw:<span class="hljs-number">1</span><br><br># 使用card <span class="hljs-number">1</span>播放mp3音频<br>play -d hw:<span class="hljs-number">1</span> xxx.mp3<br><br># 使用card <span class="hljs-number">1</span>播放wav音频<br>play -d hw:<span class="hljs-number">1</span> xxx.wav<br><br># 使用card <span class="hljs-number">1</span>播放flac音频<br>play -d hw:<span class="hljs-number">1</span> xxx.flac<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看当前已注册的声卡<br>cat /proc/asound/cards<br><br># 查询音频时钟，确认时钟设置是否正确<br>cat /sys/kernel/debug/clk/clk_summary | egrep <span class="hljs-string">&quot;i2s1|pll&quot;</span><br><br># 获取录音设备<br>aplay -l<br><br># 获取录音设备<br>arecord -l<br><br># 查看声卡驱动目录<br>ls /dev/snd/<br><br># 列出可以控制card <span class="hljs-number">1</span>的控制器<br>amixer controls -c <span class="hljs-number">1</span><br><br># 列出所有card <span class="hljs-number">1</span>控制器能配置的值<br>amixer contents -c <span class="hljs-number">1</span><br><br># 查看声卡<span class="hljs-number">0</span>控制器<span class="hljs-number">2</span>的可配置的值<br>amixer -Dhw:<span class="hljs-number">0</span> cget numid=<span class="hljs-number">2</span><br>amixer -c <span class="hljs-number">0</span> cget numid=<span class="hljs-number">2</span><br><br># 设置声卡<span class="hljs-number">0</span>控制<span class="hljs-number">2</span>的值为<span class="hljs-number">3</span><br>amixer -Dhw:<span class="hljs-number">0</span> cset numid=<span class="hljs-number">2</span> <span class="hljs-number">3</span><br>amixer -c <span class="hljs-number">0</span> cset numid=<span class="hljs-number">2</span> <span class="hljs-number">3</span><br><br># 图形化查看当前信息<br>alsamixer<br><br># 指定声卡<span class="hljs-number">0</span>播放音频文件<br>aplay -D hw:<span class="hljs-number">0</span> test.wav<br>aplay -c <span class="hljs-number">0</span> test.wav<br><br># 使用声卡<span class="hljs-number">0</span>，cd音质，录制<span class="hljs-number">10</span>s<br>arecord -f cd -Dhw:<span class="hljs-number">1</span> -d <span class="hljs-number">10</span> test.wav<br><br># 使用card <span class="hljs-number">1</span>录制并使用card <span class="hljs-number">1</span>进行播放<br>sudo arecord -f cd -Dhw:<span class="hljs-number">1</span> | aplay -Dhw:<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <ul>
+<li>
+<p>后续补充<mark>alsaloop、play、pacmd、pluseaudio</mark>指令</p>
+</li>
 <li>
 <p>-Dhw:0,0详解</p>
 <ul>
@@ -429,11 +432,15 @@
 </ul>
 <p>= =&gt;如RK平台，录播都是仅支持2ch，如果直接使用hw:0,0播放mono文件则会报错：Channels count non available；只能使用stereo；</p>
 <p>但是可以使用plughw:0,0的方式播放mono文件</p>
+<ul>
+<li>录音也可以使用plughw:0的方式录制mono格式的音频</li>
+</ul>
+<p>= =&gt; <mark>plughw:0</mark> 很好用</p>
 <hr>
-<h4 id="音频功能调试-Andorid">音频功能调试-Andorid</h4>
+<h2 id="音频功能调试-Andorid">音频功能调试-Andorid</h2>
 <hr>
 <hr>
-<h3 id="自定义log打印">自定义log打印</h3>
+<h2 id="自定义log打印">自定义log打印</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Debug */</span><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 1</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DBG(x...) printk(x)</span><br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DBG(x...) do &#123; &#125; while (0)</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> CONFIG_SND_DEBUG</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DBG(args...) pr_info(args)</span><br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DBG(args...)</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
     [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
@@ -489,7 +496,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年1月5日</div>
+          <div>2024年1月8日</div>
         </div>
       
       
