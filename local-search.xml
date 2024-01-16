@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>环境搭建</title>
+    <link href="/2024/01/16/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <url>/2024/01/16/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1>Linux</h1><h2 id="Linux下切换python版本">Linux下切换python版本</h2><ul><li><p>软链接方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">whereis python<br><span class="hljs-built_in">rm</span> /usr/bin/python<br><span class="hljs-built_in">ln</span> -s /usr/bin/python3.6 /usr/bin/python<br></code></pre></td></tr></table></figure></li></ul><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {        panel.getElementsByClassName('fold-title')[0].onclick = function() {            panel.classList.toggle("collapsed");            panel.classList.toggle("expanded");        }    });})(document);</script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+      <tag>Android</tag>
+      
+      <tag>Windows</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Linux_dts</title>
     <link href="/2023/12/28/Linux-dts/"/>
     <url>/2023/12/28/Linux-dts/</url>
