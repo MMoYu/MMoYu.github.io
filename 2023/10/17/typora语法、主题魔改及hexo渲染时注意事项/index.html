@@ -1,0 +1,783 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="MMoYu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="mac风格的代码块和代码字体颜色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="typora语法、主题魔改及hexo渲染时注意事项">
+<meta property="og:url" content="https://mmoyu.github.io/2023/10/17/typora%E8%AF%AD%E6%B3%95%E3%80%81%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9%E5%8F%8Ahexo%E6%B8%B2%E6%9F%93%E6%97%B6%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
+<meta property="og:site_name" content="MMoYu′s hut">
+<meta property="og:description" content="mac风格的代码块和代码字体颜色">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mmoyu.github.io/2023/10/17/typora%E8%AF%AD%E6%B3%95%E3%80%81%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9%E5%8F%8Ahexo%E6%B8%B2%E6%9F%93%E6%97%B6%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231017135512359.png">
+<meta property="article:published_time" content="2023-10-17T05:51:33.000Z">
+<meta property="article:modified_time" content="2024-01-08T03:26:16.000Z">
+<meta property="article:author" content="MMoYu">
+<meta property="article:tag" content="Typora">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mmoyu.github.io/2023/10/17/typora%E8%AF%AD%E6%B3%95%E3%80%81%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9%E5%8F%8Ahexo%E6%B8%B2%E6%9F%93%E6%97%B6%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231017135512359.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>typora语法、主题魔改及hexo渲染时注意事项 - MMoYu′s hut</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mmoyu.github.io","root":"/","version":"1.9.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>文档转移中：wiki：https://mmoyu.work/wiki/</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">typora语法、主题魔改及hexo渲染时注意事项</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        MMoYu
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-17 13:51" pubdate>
+          2023年10月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">typora语法、主题魔改及hexo渲染时注意事项</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：4 个月前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="效果演示：">效果演示：</h3>
+<p><img src="/2023/10/17/typora%E8%AF%AD%E6%B3%95%E3%80%81%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9%E5%8F%8Ahexo%E6%B8%B2%E6%9F%93%E6%97%B6%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231017135512359.png" srcset="/img/loading.gif" lazyload alt="image-20231017135512359"></p>
+<hr>
+<hr>
+<h3 id="Typora">Typora</h3>
+<h4 id="typora修改点">typora修改点</h4>
+<p>— 整体改动不大，主要是在原生的Techo主题上做了一点修改；可以参考我的进行修改：</p>
+<ul>
+<li>
+<p>typora 使用 Techo主题</p>
+</li>
+<li>
+<p>打开主题css文件：文件 ==》偏好 ==》 外观 ==》 打开主题文件夹 ==》Techo.css(其他)</p>
+</li>
+<li>
+<p>修改为mac风格的代码块（<mark>mac三点=醋</mark>）和字体</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs CSS">//将对应的md-fences替换如下即可<br><span class="hljs-selector-id">#write</span> <span class="hljs-selector-class">.md-fences</span> &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#c5c8c6</span>;<br>    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#21252b</span>;                        //代码块的背景颜色<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;                              //代码块圆弧半径<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">30px</span> <span class="hljs-number">0</span> <span class="hljs-built_in">rgb</span>(<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> / <span class="hljs-number">40%</span>);<br>    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">30px</span>;                                //代码块上方区域间隔<br>	<span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">20px</span>;                             //代码块下方区域间隔<br>    <span class="hljs-attribute">font-family</span>: Consolas, <span class="hljs-string">&#x27;Courier New&#x27;</span>, monospace;  //代码字体格式<br>&#125;<br><br>//mac 红黄绿三点<br><span class="hljs-selector-id">#write</span> <span class="hljs-selector-class">.md-fences</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fc625d</span>;<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span> <span class="hljs-number">#fdbc40</span>, <span class="hljs-number">40px</span> <span class="hljs-number">0</span> <span class="hljs-number">#35cd4b</span>;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27; &#x27;</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">20px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">12px</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改代码块的字体颜色<br>
+— Techo格式按如上修改后会导致字体被黑色背景覆盖，需修改字体颜色从而适应背景</p>
+<div class="fold collapsed">
+        <div class="fold-title">
+            代码如下
+        </div>
+        <div class="fold-content">
+            <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs css">//在Techo<span class="hljs-selector-class">.css</span> 目录下新建base<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.css</span>文件或者直接使用该文件<br>//复制以下代码<br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-number</span>&#123;<span class="hljs-attribute">color</span>:<span class="hljs-number">#7f6bff</span>&#125; <span class="hljs-comment">/*数字，蓝色*/</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-property</span> &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#f08d49</span>;<br>&#125;<br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-variable-3</span>&#123;<span class="hljs-attribute">color</span>:<span class="hljs-number">#ffed6b</span>&#125; <span class="hljs-comment">/*返回值、变量类型，int、void等，淡黄色*/</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-qualifier</span>&#123;<span class="hljs-attribute">color</span>:<span class="hljs-number">#888</span>&#125;<br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-variable-2</span> &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>;<br>&#125; <br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-meta</span>&#123; <span class="hljs-attribute">color</span>:<span class="hljs-number">#BBFFFF</span>&#125;  <span class="hljs-comment">/* 头文件、宏定义一整行 青色*/</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-atom</span> &#123; <span class="hljs-attribute">color</span>:<span class="hljs-number">#f9ff00</span>&#125; <span class="hljs-comment">/* true、false 黄色*/</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-keyword</span>&#123;    <span class="hljs-attribute">color</span>: <span class="hljs-number">#ff1800</span>;&#125; <span class="hljs-comment">/* if、return等关键字红色*/</span><br><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-def</span>&#123; <span class="hljs-attribute">color</span>:<span class="hljs-number">#00ff00</span>  &#125; <span class="hljs-comment">/* 函数定义，绿色 */</span><br><br><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-variable</span> &#123; <span class="hljs-attribute">color</span>: <span class="hljs-number">#90EE90</span>; &#125; <span class="hljs-comment">/* 入参定义，亮绿色 */</span><br><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-builtin</span> &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#82AAFF</span>;<br>&#125;<span class="hljs-comment">/* 蓝色 */</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-comment</span> &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>;<br>&#125; <span class="hljs-comment">/* 灰色 */</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-string</span>&#123; <span class="hljs-attribute">color</span>: <span class="hljs-number">#82AAFF</span>  &#125; <span class="hljs-comment">/* 字符串， 蓝色*/</span><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-string-2</span> &#123; <span class="hljs-attribute">color</span>: <span class="hljs-number">#888</span>  &#125;<br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-operator</span> &#123;<span class="hljs-attribute">color</span>: <span class="hljs-number">#ff1800</span>&#125;<span class="hljs-comment">/* +=等操作符，红色*/</span><br><span class="hljs-selector-class">.CodeMirror</span> <span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.CodeMirror-cursor</span> &#123;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#fff</span>;<br>    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">3</span>;<br>&#125;<br><span class="hljs-selector-class">.CodeMirror-selected</span>,<br><span class="hljs-selector-class">.CodeMirror-selectedtext</span> &#123;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-number">#666</span> <span class="hljs-meta">!important</span>;<br>&#125;<br><br><br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-tag</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#F07178</span>;<br>&#125;<br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-bracket</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#FFF</span>;<br>&#125;<br><span class="hljs-selector-class">.CodeMirror-line</span> <span class="hljs-selector-class">.cm-attribute</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#FFCB6B</span>;<br>&#125;<br><br><span class="hljs-selector-class">.sidebar-content</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: h1<br>&#125;<br><br><span class="hljs-selector-class">.outline-h1</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: h2<br>&#125;<br><br><span class="hljs-selector-class">.outline-h2</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: h3<br>&#125;<br><br><span class="hljs-selector-class">.outline-h3</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: h4<br>&#125;<br><br><span class="hljs-selector-class">.outline-h4</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: h5<br>&#125;<br><br><span class="hljs-selector-class">.outline-h5</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: h6<br>&#125;<br><br><span class="hljs-selector-class">.outline-h1</span>&gt;<span class="hljs-selector-class">.outline-item</span>&gt;<span class="hljs-selector-class">.outline-label</span><span class="hljs-selector-pseudo">:before</span> &#123;<br>    <span class="hljs-attribute">counter-increment</span>: h1;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(h1) <span class="hljs-string">&quot; &quot;</span><br>&#125;<br><br><span class="hljs-selector-class">.outline-h2</span>&gt;<span class="hljs-selector-class">.outline-item</span>&gt;<span class="hljs-selector-class">.outline-label</span><span class="hljs-selector-pseudo">:before</span> &#123;<br>    <span class="hljs-attribute">counter-increment</span>: h2;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(h1) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h2) <span class="hljs-string">&quot; &quot;</span><br>&#125;<br><br><span class="hljs-selector-class">.outline-h3</span>&gt;<span class="hljs-selector-class">.outline-item</span>&gt;<span class="hljs-selector-class">.outline-label</span><span class="hljs-selector-pseudo">:before</span> &#123;<br>    <span class="hljs-attribute">counter-increment</span>: h3;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(h1) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h2) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h3) <span class="hljs-string">&quot; &quot;</span><br>&#125;<br><br><span class="hljs-selector-class">.outline-h4</span>&gt;<span class="hljs-selector-class">.outline-item</span>&gt;<span class="hljs-selector-class">.outline-label</span><span class="hljs-selector-pseudo">:before</span> &#123;<br>    <span class="hljs-attribute">counter-increment</span>: h4;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(h1) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h2) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h3) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h4) <span class="hljs-string">&quot; &quot;</span><br>&#125;<br><br><span class="hljs-selector-class">.outline-h5</span>&gt;<span class="hljs-selector-class">.outline-item</span>&gt;<span class="hljs-selector-class">.outline-label</span><span class="hljs-selector-pseudo">:before</span> &#123;<br>    <span class="hljs-attribute">counter-increment</span>: h5;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(h1) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h2) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h3) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h4) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h5) <span class="hljs-string">&quot; &quot;</span><br>&#125;<br><br><span class="hljs-selector-class">.outline-h6</span>&gt;<span class="hljs-selector-class">.outline-item</span>&gt;<span class="hljs-selector-class">.outline-label</span><span class="hljs-selector-pseudo">:before</span> &#123;<br>    <span class="hljs-attribute">counter-increment</span>: h6;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(h1) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h2) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h3) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h4) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h5) <span class="hljs-string">&quot;.&quot;</span><span class="hljs-built_in">counter</span>(h6) <span class="hljs-string">&quot; &quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+        </div>
+    </div>
+<p>重启Typora查看效果</p>
+</li>
+</ul>
+<hr>
+<h4 id="typora文字高亮在hexo渲染不生效">typora文字高亮在hexo渲染不生效</h4>
+<ul>
+<li>typora 高亮语法是==高亮==，与传统的markdown不一致，导致hexo渲染时不生效</li>
+<li>解决方法：
+<ul>
+<li>使用&lt; mark&gt;<mark>高亮</mark> &lt; mark&gt;传统语法，在typora和hexo中均可正常渲染；注意去掉&lt;&gt;内部空格，为正常显示而加的</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="typora空格-首行缩进在hexo中渲染问题">typora空格/首行缩进在hexo中渲染问题</h4>
+<ul>
+<li>markdowm会自动限定格式，使用Tab、空格的方式缩进在hexo渲染时只显示一小部分缩进</li>
+<li>使用<mark>&quot; &amp; emsp;&quot;</mark>在markdowm中代替缩进即可；注意：需去掉中间空格</li>
+</ul>
+<hr>
+<h4 id="typora在hexo中标题、标签等设置">typora在hexo中标题、标签等设置</h4>
+<ul>
+<li>
+<p>在md文章开头添加：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">---<br>title: title_name<br>date: <span class="hljs-number">2023</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span> <span class="hljs-number">13</span>:<span class="hljs-number">51</span>:<span class="hljs-number">33</span><br>description: Descriptive_sentences<br>tags: [Typora,Hexo]<br>---<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>tags多标签格式需注意下</p>
+</li>
+</ul>
+<hr>
+<hr>
+<h3 id="HEXO">HEXO</h3>
+<h4 id="HEXO代码块字体修改">HEXO代码块字体修改</h4>
+<p>— Fluid主题不支持自定义代码块字体颜色，但可以使用自定义css</p>
+<ul>
+<li>
+<p>在_config.fluid.yml文件中添加自定义css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">custom_css:<br>    - /css/macpanel #添加mac分格的代码块<br>    - /css/style   #添加自定义的css<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><br>- 在\themes\fluid\source\css中添加如style<span class="hljs-selector-class">.styl</span>文件(注意：fluid主题的css后缀是styl)<br><br>  ```css<br>  <span class="hljs-selector-class">.markdown-body</span> pre <span class="hljs-selector-tag">code</span> &#123;<br>      <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">152</span> <span class="hljs-number">245</span> <span class="hljs-number">255</span>);<br>  &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>重新部署hexo即可</p>
+</li>
+</ul>
+<hr>
+<h4 id="HEXO-Fluid版本升级">HEXO &amp;&amp; Fluid版本升级</h4>
+<ul>
+<li>
+<p>HEXO 版本升级</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 查看当前版本，判断是否需要升级</span><br>hexo version<br><br><span class="hljs-comment"># 全局升级hexo-cli</span><br>npm i hexo-cli -g<br><br><span class="hljs-comment"># 安装npm-check，若已安装可以跳过</span><br>npm install -g npm-check<br><br><span class="hljs-comment"># 安装npm-upgrade，若已安装可以跳过</span><br>npm install -g npm-upgrade<br><br><span class="hljs-comment"># 更新package.json</span><br>npm-upgrade<br><br><span class="hljs-comment"># 更新全局插件</span><br>npm update -g<br><br><span class="hljs-comment"># 更新系统插件</span><br>npm update --save<br><br><span class="hljs-comment"># 查看版本</span><br>hexo version<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Fluid主题更新</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm update --save hexo-theme-fluid<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="HEXO渲染pdf文件">HEXO渲染pdf文件</h4>
+<ul>
+<li>
+<p>在hexo/source下新建pdf文档</p>
+</li>
+<li>
+<p>在该pdf目录下添加pdf文件</p>
+</li>
+<li>
+<p>在md中添加相对路径</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">&#123;%pdf /pdf/byte-of-python-chinese-edition.pdf%&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="HEXO-Fluid折叠块功能">HEXO-Fluid折叠块功能</h4>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs django"><span class="hljs-template-tag">&#123;% <span class="hljs-name">fold</span> &quot;折叠块的标题&quot;%&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml">xxxx</span><br><span class="language-xml"></span><br><span class="language-xml"></span><span class="hljs-template-tag">&#123;% <span class="hljs-name">endfold</span> %&#125;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="HEXO整体迁移至另一台电脑">HEXO整体迁移至另一台电脑</h4>
+<ul>
+<li>
+<p>准备好Git环境个人推荐多台电脑使用同一份Git Key</p>
+</li>
+<li>
+<p>拷贝HEXO这个目录至目标主机</p>
+</li>
+<li>
+<p>删去hexo目录下的node_modules文件夹</p>
+</li>
+<li>
+<p>重新安装环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 安装hexo</span><br>npm install hexo-cli -g<br><br><span class="hljs-comment"># 在新的hexo目录下重新安装依赖</span><br>npm install<br><br><span class="hljs-comment"># 安装hexo的git工具</span><br>npm install hexo-deployer-git --save<br><br><span class="hljs-comment"># 重新部署即可</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
+    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
+        panel.getElementsByClassName('fold-title')[0].onclick = function() {
+            panel.classList.toggle("collapsed");
+            panel.classList.toggle("expanded");
+        }
+    });
+})(document);</script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Typora/" class="print-no-link">#Typora</a>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>typora语法、主题魔改及hexo渲染时注意事项</div>
+      <div>https://mmoyu.github.io/2023/10/17/typora语法、主题魔改及hexo渲染时注意事项/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>MMoYu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月17日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年1月8日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/18/Pythone%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="语言学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">语言学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/16/%E5%BB%BA%E7%AB%8B%E7%BC%98%E7%94%B1/" title="建立缘由">
+                        <span class="hidden-mobile">建立缘由</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://mmoyu.work/wiki/" target="_blank" rel="nofollow noopener"><span>wiki</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

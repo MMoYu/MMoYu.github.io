@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="MMoYu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="初稿">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux_Audio基本概念">
+<meta property="og:url" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="MMoYu′s hut">
+<meta property="og:description" content="初稿">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
+<meta property="og:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png">
+<meta property="og:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png">
+<meta property="article:published_time" content="2024-03-22T06:09:49.120Z">
+<meta property="article:modified_time" content="2024-01-05T01:59:20.000Z">
+<meta property="article:author" content="MMoYu">
+<meta property="article:tag" content="Audio">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Linux_Audio基本概念 - MMoYu′s hut</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mmoyu.github.io","root":"/","version":"1.9.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>文档转移中：wiki：https://mmoyu.work/wiki/</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Linux_Audio基本概念</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        MMoYu
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-22 14:09" pubdate>
+          2024年3月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux_Audio基本概念</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：4 个月前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Linux-Audio基本概念">Linux_Audio基本概念</h4>
+<p>—基于RK开发板</p>
+<h5 id="术语、缩略语及定义">术语、缩略语及定义</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">术语/定义</th>
+<th>英文对应词</th>
+<th>含  义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DAI</td>
+<td>Digital Audio Interface</td>
+<td>数字音频接口</td>
+</tr>
+<tr>
+<td style="text-align:center">PCM</td>
+<td>Pulse Code Modulation</td>
+<td>脉冲编码调制：是一种模拟信号的数字化方法</td>
+</tr>
+<tr>
+<td style="text-align:center">PDM</td>
+<td>Pulse Density Modulation</td>
+<td>脉冲密度调制：是一种用数字信号表示模拟信号的调制方法</td>
+</tr>
+<tr>
+<td style="text-align:center">I2S</td>
+<td>Inter-IC Sound Bus</td>
+<td>集成电路内置音频总线；</td>
+</tr>
+<tr>
+<td style="text-align:center">SPDIF（S/PDIF）</td>
+<td>Sony/Phillips Digital Interface（索尼/飞利浦数字接口）</td>
+<td>光纤音频输出</td>
+</tr>
+<tr>
+<td style="text-align:center">TDM</td>
+<td>Time-division multiplexing</td>
+<td>时分复用：为了传输多通道数据；</td>
+</tr>
+<tr>
+<td style="text-align:center">VAD</td>
+<td>Voice Active Detection</td>
+<td>语音检测</td>
+</tr>
+<tr>
+<td style="text-align:center">采样率</td>
+<td></td>
+<td>每秒钟取得声音样本的次数</td>
+</tr>
+<tr>
+<td style="text-align:center">通道数</td>
+<td></td>
+<td>音频的采集和播放是可以叠加的；声道数一般表示声音录制时的音源数量或回放时相应的扬声器数量</td>
+</tr>
+<tr>
+<td style="text-align:center">帧</td>
+<td></td>
+<td>记录了一个声音单元，其长度为样本长度与通道数的乘积，一段音频数据就是由苦干帧组成的</td>
+</tr>
+<tr>
+<td style="text-align:center">帧大小</td>
+<td></td>
+<td>一帧占用多少字节</td>
+</tr>
+<tr>
+<td style="text-align:center">周期</td>
+<td></td>
+<td>音频设备一次处理所需要的桢数，取决于硬件缓冲区的大小，对于音频设备的数据访问以及音频数据的存储，都是以此为单位</td>
+</tr>
+<tr>
+<td style="text-align:center">码率</td>
+<td></td>
+<td>每秒的数据量，码率 = 采样率 * 帧大小</td>
+</tr>
+</tbody>
+</table>
+<h6 id="PCM">PCM:</h6>
+<p>脉冲编码调制的完整过程，简单概括为：<strong>采样，量化，编码</strong>。<br>
+—通过等时间隔（即采样率时钟周期）采样将模拟信号数字化的方法；<br>
+—理论上可以传输单声道，双声道立体声（I2S）和多声道（TDM）<img src="/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png" srcset="/img/loading.gif" lazyload alt="image-20230906150439768"></p>
+<hr>
+<h6 id="PDM">PDM</h6>
+<p>—PDM（Pulse Density Modulation）是一种用数字信号表示模拟信号的调制方法。同为将模拟量转换为数字量的方法</p>
+<p>—在以PDM方式作为模数转换方法的应用接收端，需要用到抽取滤波器（Decimation Filter）将密密麻麻的0和1代表的密度分量转换为幅值分量，而PCM得到的就已经是幅值相关的数字分量。图20示意为通过PDM方式数字化的正弦波。</p>
+<p><img src="/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png" srcset="/img/loading.gif" lazyload alt="image-20230906151408106"></p>
+<p>PDM_CLK的上升沿采样左声道数据，在PDM_CLK下降沿采样右声道数据，具体如下所示：<br>
+<img src="/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png" srcset="/img/loading.gif" lazyload alt="image-20230906152439748"></p>
+<hr>
+<h6 id="I2S">I2S</h6>
+<ul>
+<li>
+<p>I2S简介<br>
+— I2S有3个主要信号：SCLK、LRCK、SDATA，有时为了使系统间能够更好的同步，还需要另外传输一个信号MCLK，称为主时钟，也叫系统时钟（System Clock），是采样频率的256或384倍；PCM类型的数据，因此可以说I2S是PCM接口的特例；<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/Richard_Brown/article/details/123835282">I2S、TDM详细介绍_i2s tdm_嵌入式老林的博客-CSDN博客</a></p>
+<ul>
+<li>支持全双工/半双工</li>
+<li>支持主/从模式</li>
+</ul>
+</li>
+<li>
+<p>I2S信号线<br>
+— <mark>只定义了三根信号线</mark>: 位时钟线、左右声道时钟线、数据传输线</p>
+<blockquote>
+<p>— 时钟信号线 SCK/SCLK = BLCK = 位时钟线</p>
+<ul>
+<li>==SCK的频率 = 声道数 * 采样频率 * 采样位数==</li>
+</ul>
+<p>— 字段选择信号线 WS<br>
+==字段选择信号WS，也叫帧时钟：LRCLK，用于切换左右声道的数据。WS的频率 = 采样频率==</p>
+<ul>
+<li>WS为0，表示正在传输的是左声道的数据；</li>
+<li>WS为1，表示正在传输的是右声道的数据；</li>
+</ul>
+<p>— 串行数据线 SD</p>
+<ul>
+<li>就是用二进制补码表示的音频数据。I2S串行数据在传输的时候，由高位(MSB)到低位(LSB)依次进行传输<br>
+<mark>SDI：数据输入端口； SDO：数据输出端口</mark></li>
+</ul>
+</blockquote>
+<p>— 主时钟线 MCLK <mark>额外加的,由master做主，I2S协议中没有定义这个</mark></p>
+<ul>
+<li>MCLK的频率 = 256或者512 * ==采样频率==</li>
+</ul>
+</li>
+<li>
+<p>I2S操作模式<br>
+— I2S分为三种不同的操作模式，分别为标准I2S模式、左对齐模式和右对齐模式：</p>
+<ul>
+<li>I2S Phillips Standard I2S标准格式</li>
+<li>Left Justified Standard 左对齐格式</li>
+<li>Right Justified Standard 右对齐格式</li>
+</ul>
+</li>
+<li>
+<p>==TDM模式==</p>
+</li>
+</ul>
+<hr>
+<h6 id="VAD">VAD</h6>
+<p>— Voice Active Detection：语音检测</p>
+<ul>
+<li>
+<p>概述<br>
+— VAD是最简单也是最重要的语音模块；主要区分是语音还是不是语音，二分类问题</p>
+</li>
+<li>
+<p>VAD数据来源</p>
+<ul>
+<li>自行采集或自行测试：纯净语音+任意噪声，自行调节信噪比；</li>
+<li>开源VAD数据</li>
+</ul>
+</li>
+<li>
+<p>常见VAD</p>
+<ul>
+<li>基于传统的DSP（一般是基于高斯统计模型，也有基于门限的hard code）</li>
+<li>基于AI模型</li>
+</ul>
+</li>
+<li>
+<p>VAD实现方式</p>
+<p>— 采用阈值过滤的方式；feature越多，系统越稳定，但计算量也会越大；</p>
+<ul>
+<li>能量：语音信息一般在2khz以下，噪声一般在2khz以上；无法排除低频噪声</li>
+<li>过零率：噪声波动较大，语音信息不会</li>
+<li>SNR</li>
+<li>倒谱：能量倒谱确定了语音信号的的基频</li>
+<li>谐波</li>
+<li>长时特征</li>
+</ul>
+<p>— 采用统计模型：目前工业界很少用了</p>
+<p>— AIVAD</p>
+</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
+    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
+        panel.getElementsByClassName('fold-title')[0].onclick = function() {
+            panel.classList.toggle("collapsed");
+            panel.classList.toggle("expanded");
+        }
+    });
+})(document);</script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Audio/" class="print-no-link">#Audio</a>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux_Audio基本概念</div>
+      <div>https://mmoyu.github.io/2024/03/22/Linux_Audio基本概念/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>MMoYu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月22日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年1月5日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/22/%E5%9B%BE%E7%89%87%E8%89%B2%E5%8D%A1Emoji%E7%BC%96%E7%A0%81/" title="图片色卡Emoji编码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">图片色卡Emoji编码</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/25/Book/" title="the whole earth catalog">
+                        <span class="hidden-mobile">the whole earth catalog</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://mmoyu.work/wiki/" target="_blank" rel="nofollow noopener"><span>wiki</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
