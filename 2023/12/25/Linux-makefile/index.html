@@ -24,7 +24,7 @@
 <meta property="og:description" content="Linux makefile详解">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-25T02:23:03.000Z">
-<meta property="article:modified_time" content="2024-02-28T09:24:22.000Z">
+<meta property="article:modified_time" content="2024-04-26T20:22:59.058Z">
 <meta property="article:author" content="MMoYu">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Make">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          6.6k 字
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          12 分钟
+          55 分钟
         
       </span>
     
@@ -310,81 +310,28 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
             
             
-              <div class="markdown-body">
-                
-                <h4 id="草稿">草稿</h4>
-<ul>
-<li>
-<p>= 是最基本的赋值</p>
-<p>:= 是覆盖之前的值</p>
-<p>?= 是如果没有被赋值过就赋予等号后面的值</p>
-<p>+= 是添加等号后面的值</p>
-<p>1、$&lt;     第一个依赖文件，若有多个目标文件，依次编译依赖文件</p>
-<p>2、$^     所有依赖文件的集合</p>
-<p>3、$@     目标文件的集合</p>
-</li>
-<li>
-<p>ccflags-y asflags-y和ldflags-y<br>
-ccflags-y asflags-y和ldflags-y这三个变量的值分别对应编译、汇编、链接时的参数。</p>
-</li>
-</ul>
-<p>ccflags-y 变量在当前 Makefile 中有效<br>
-//这里添加在ccflags-y下，通用编译选项<br>
-//外部模块头文件的单独目录放置<br>
-//表明当前目录编译需要依赖外部这个路径的头文件</p>
-<ul>
-<li>
-<p>subdir-ccflags-y, subdir-asflags-y<br>
-这两个编译选项与ccflags-y和asflags-y效果是一致的，只是添加了subdir-前缀，意味着这两个编译选项对本目录和所有的子目录都有效</p>
-</li>
-<li>
-<pre><code class="language-makefile">cur_dir := $(dir $(lastword $(MAKEFILE_LIST)))
-//取当前脚本的所在路径：$0
-//$(dir xxx)函数用来从一个路径名中截取目录的部分= =&gt;获取文件所在目录
-//$(lastword xxx) ：以空格为结束符的最后一个字符
-//$(MAKEFILE_LIST) ： 当前文件，包括是谁include它的文件
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="c5abb59b72ac3f575917a47c861398b3d9834be1f9e1b17c7c3c05c661ce9c84">6c7403a67b5863e4a8c92de30a55f406f0fe2e79dd0e5c36ec1bfb5beb312bc15ec8217299601582b9ecea003209f5da7cba64257fc91117b3c869974fa466db1871c4fa6c67d9cf3c7fae39907a759815596059901dbe135a362d28847711a46e305fdead9be7ca03ef3fdcf360060390b72a05a09d7f2553c6a46c6418602d976a8c5ccba474d4ba7212d5d531094c18bb715b4b484d1f19384b9b82e0670076aa5542a08c52ffa72bcacd0a2fbf6818092ba60bd69d8d771191c9ecf95d1b5c64d387b79161e6abf6be797948100ff27833ad14e01a926cc9be61597ebfc3804bfad40d71fa4a3b5fe4d272e352f897df5853625f9c7bfb864c6ae526aec68de163a6808455e276c87b3f8f730afc3b700f59ff8f6869bffc8581c6bdffecdc2fc72b8b1a5f299821732e78444509cfb7bac2780c208269d7453d2694de9c5810351caf1da7d294eda64e17e7863324bf9e9cc714533dfb3769c9cfa776a34b7f7463930bd554bff250aa580608f789509fc0ce51e3e2fd4ab83c5c589a2f5b80d402cc0779ce1683a6d7b02514ba087b3d63b61a7014fde97bbb0b1020ff1d4eda187f3fbbdfde64eac4988aa711b80ccabcbf8cfc1c4f09f6ec01763e6196a207db6cb5d32294ecca122c1f833cf84c64162510cc66e39af5aac15524a1a3fb194cae6afd525d18abf3ebd293d32ca3a711d6a99955ff8f24870bc2d55700714ec9e35a42d326813eee6832f1f07904875b7edf0373e63eb291e1af0bb6e75427efab2c77fdc34f0b02a7c8c568f42f5da6c0f1034758307d058025e3bfd3087159720c66ff0ae363ba91da4decadb55ed1429f911e8d4f385a350f57a4e7dae9fc510df1bb6b8eb86f1fd170752a3acd7bf2debe4a85d39dcf00453acc5b1c85eb9e7971967efc03c0a77d662a3ff95faae41968a028b8b1ad31382ad2804381b36ee2e7e1a0749a7644e7a8459a72d6f6de8c0dbc222e0f1cd1644e42ed83eb0114a68ff897197c081c4466c6552bd046b31470825e4682a24e41f6a386b2014af8566d6a219cae7b0ac99147bd6beb7562c1892f4ec872834e5a038add458ba78d2073a2e6c6716319c50e3bba8d0daf06376f031b4db503dfe2c0c3f1f08630408f35790fea848a5ba8fbdb7f862aea4c7dc2dd69d275ca09b9213a63a131a90e898fb6e77b6c81455cd3e0872701f287dbe7ac306af97b8289377e81d0b945226012b09cca4ae041395e3d8e0ec49a30d7cc794c6c8f8597480b93b8ff025783e3547c9514cbcd70433093be1638a9510ec322321c57dc26c464082834669d78ca19a3e6c80e7de110a616cc90a62a75e17f959dcbf1dba0f07ca4e9e310ed951d42cc439a9c311582ad1cbe7ed7057d4850cf24b4d3d158fd7541b8fc8a46675dc88e425c794336654b32b682810e6487c6caa81c5656d7371721891f586c4fd98243439312987235a81ab83a9a90ad8323c319d7dfc16f742e27e445c719218dc4ee318e6ea4c58beca1ace69cc53f1d4c87fc72720b012a5370f9b6b4eae72202795aafe34056abd4a0cf5a05c27e94875737e8f0d00737dd513ca05e4ee2811e9d6ea645f6962bf460874ace2cdfb4696cd28da758b6048fd1b089294664f129e73eeab3c8e023e697c0e0a41291a2ec6c4af7ef1e7c39412906fd3375c4ded232ade83607cf2d95596fef14a0bd233df1ce430fc2e50bcef3dd8b03354c2ecc5b8e6006d97d74d9f0315c13aa274da8e012117b4eaf3a1ebfa8c602cb763d098a3e955b733cee293d474c4616a7447b3711d0b98e63eadd5569ad1bbcc8ecb99c6fbdf95189ca20747c6b39f25a366b22d09c2c0a7f255645db6833065d05b2c099d2bdd33d977c78afd00b565917b28d49628efe3e6436ae19a4d6f3744fcedd39879165f73b8690fbea9c0336053e04c1c80b59623ca45127e43f7b529ff558684eca68061a1fd1b1c8c731ddbd72f20d22bfa02803a98ff675ec12abfa10f708d7b2fdc0e4c1452409180c6c2207044084a217b72c1bd2acead5c7428ec345eb3b4ed2a2a06e734a8faab6f3eb9b9a70fb27abc8b749c79a37f84b506e9400160a631b137109f67d21627b0cfb9d75c93ba5190cfb8cd5ea5bc96e22d417f2ee26537b7b3d3bc79eba63004c7baa0e94502c2d8a55a27ac34ead26bcd099ee6f0d82496a6841618bda719efad53960abd2a5e2eef1575c722c16c15b35566702e22b4f36ca9c1fb0b2e23d27289c11a9f73947c9cd3d5cd48242cd15c629dbadfea8aa1d62d9fcbb94a1e775a12ad69599a6379b18c9a9b5e5477693f30b13f602cbdef15bccf6c439e943dd5bbf36e9db9a098be6901964c3e2091bff3b21ce78081663161474d540c6626b5c6ba006932a07e4c8f72514abae5dce01cc0ebb8e055b401de82ffa2f9f1c6f9c88326785efcb3b5b7d6ef5129e6582f28096fd8e4b8b9afaea3e228cb9e75b0dc46062a1fca9eebec010b31befda2dc2a94250137b1d9aeffe05aa96f8e2c40acb25b756664a1215f93bce7a007c941b839a38512a5b2fe5d120682878199244e7319aee22fb888b79ed639f70637d73e995a6bfa420f4fffa75818d5fa1623aac1b78aaabd18e5b5bd69db4a3dee1ce65652da130598ce4cf1874cc44eebb4a25c9f7c26926722c2645d8080b0470749fd12ae30074d695126c5304ae87f06a89efa088ed4bd6dcfc8ea3526b78c77b5be96bf9c85fecf40d4d7b5ce023e500004222af66fbe07c93b5727c50a979f9f10a1449250e63872af136d3cb573ac91c7b0f9147fb431c86eba032bd925d2d88b3bb7553a3b2087f4f3c77af9e1865a2e7f69a2b8d32664e846a59a104ece485e9e6b9746303528047123dfbc03d25fbde2012b874207a0b4c2fa02f1a41d3cd8b810dd61b17e3c2282cccd10a5585ff3ead9593d96314dc64b6f6b0fd13ce7a78bca1f5b227ee0450d6f639d06b6621f36810688782103375451d2e9ae8a0f838e473cc8a1a155f5e65b7c7ee9f2cbf9f5be7ba90bdd40327d93e8408b41b61f9672a5e9d5e71bfae2fe452705f31fd297c0f2c72deeac7d001c44310ad96206b5b007c388eacde249471675be3bd98894e7b0cb2b10b9b6b60de462f3380fb64fed8574b15743049da31d28a9718c58a79344cde266e951ea1066491f8902cd94ee6ddf64dd6a6c854a92d6c8e8a0a608869f61c51bda07913aa165db3ef8af2c337b4f0fcc9e6285d208a011f65d3c543d574b35d43810bc9b41186d7c5102113748574793e0a8e3ebd39f295e208dbb05258f5101ad2e7b797cbd5bc798841af42a7208d50eb69755aec9234e2db3c16d73b3429cd1700c9eff9a126e3c8d55ae672c5c8e55b800b0068650a48ae8afc16186af532edcf89132770d4792f99c87cf2f5161ee24f650e916cc4121498d117ac6658aab8448d33f90acb3ee818223aa93256fb91780bc5cfc1f716ee57c9eb5fec375ff460053db6bf918e1fcc4eaa260930d8fae012eeea0b325aab05736ac959688415ae0b2f0ee216fd0e2c34030c0743749983c1cbd4a3af30acedabd9734b31016d4a674b57c6e5cd5035e39d628d0ca98db4dfa3741b6ce29b27192d830243e63e7ddf4b942730d2d571fdd884603b5d075160e8504e512a26ab1e80e82af0f63f3d89ea63877b439502520ed1ceb6b5ff338743f9479e9d4c4975e61dfd48ac97e93154f3cabaa6628885376df1224996dd175efe21e9565873a7e949e49a6ad2dbced202ab9f4e1116d91fcb173c04bd3e635ec0debbdbd6a591d838131d98c3d6f4ef4a382403f83b65b3c372272d72eb8eb80f877e99b8919d039a8559e774a577c5dcfdbe9ac50b7b0484dd8b6659d0aa050e76a66341d2cf8ffb4fbc4b75431d91bc9623e9b6493794fec427857a08286c0567ee2c969065cdaa89e02528f50aeea5e2467cd0a4201a61c8e0ae47b05b708a76c47f3cdb4e635291925a03d3077fdef9b85ef3fc6a8f9c329a3358c0a8af8771f62eb8f7bd7db89f0dcec0058431073437fd63d1bea66aa154fb05aa81db1f3378b60980fdf8b79b3358280c5f6e106dfacd05b2a410b43e27eec48cb133d7d237e83889b712ee8399b0da74a4deb87db563cc5f68ffecbaf76188df92c55d40eabc16d90832b155f4d613df7df7c2635f59b5a53b04c7539662ea47f2534bc3f48fc398edf7dfad5126de116cee21ca500a562fdd154785934b2b1012ead45b8bd619bc525dcdf00bc2c53c8953df88fd624051fb5da12eb56674f06fc2ca3f218c3162f35e3e341266c2b0a7cc00f460fba65631363573cc969ebf262dba076445dfea1483e5772cb99590b188933cbc4b211a781fc9933cfc63bd735563e4e36b41603d83c83dcdaffde288b6de44e4536e56d76f6ad8e708d9c9157f4f198d366f5be2f9da4f4df59387a23b50d822e7fafcd75606c78084e2f130b91ad55c659c7fad479e470fe1d035d2a916676819d0a1a0f3cdfbbca3cefcfbbe995abbfdf107039f79bc9ab9492b92ebc76aa15060eb9d83cb1bf317bf79842915974c114cd324d841deaa1c80fc9d1be7324170c737ff4c6b0a5e5904fa66d7dee5518d5660fc039ccb5b104e51e3304f3e7103ca0eaa3706818ab8641a</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-
-obj_s := $(patsubst $(cur_dir)%,%,$(wildcard $(cur_dir)src/*.S))
-obj_c := $(patsubst $(cur_dir)%,%,$(wildcard $(cur_dir)src/*.c))
-obj_cpp := $(patsubst $(cur_dir)%,%,$(wildcard $(cur_dir)src/*.cpp))
-//大致是可支持的文件格式
-
-obj-y := $(obj_c:.c=.o) $(obj_s:.S=.o) $(obj_cpp:.cpp=.o)
-//将对应的文件格式编译成对应的.o文件
-
-subdir-ccflags-y += \
-	-Iapps/luxshare/aw88166/inc
-
-subdir-ccflags-y += -Wno-uninitialized
-subdir-ccflags-y += -Wno-maybe-uninitialized
-//subdir-ccflags-y 编译依赖 对本目录和所有的子目录都有效
-//Wno-maybe-uninitialized暂不清楚，应该是某种忽略机制
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><br><br><br><span class="hljs-comment">#### .mk文件打log方式</span><br><br>```c<br> <span class="hljs-variable">$(<span class="hljs-built_in">warning</span> 222222)</span><br> <span class="hljs-variable">$(<span class="hljs-built_in">warning</span>  <span class="hljs-variable">$(CHIP_NAME)</span>)</span><br></code></pre></td></tr></table></figure>
-
-
-
-
-
-</code></pre>
-</li>
-</ul>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
-    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
-        panel.getElementsByClassName('fold-title')[0].onclick = function() {
-            panel.classList.toggle("collapsed");
-            panel.classList.toggle("expanded");
-        }
-    });
-})(document);</script>
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -429,7 +376,7 @@ subdir-ccflags-y += -Wno-maybe-uninitialized
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年2月28日</div>
+          <div>2024年4月27日</div>
         </div>
       
       
@@ -639,6 +586,23 @@ subdir-ccflags-y += -Wno-maybe-uninitialized
     });
   });
 </script>
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>

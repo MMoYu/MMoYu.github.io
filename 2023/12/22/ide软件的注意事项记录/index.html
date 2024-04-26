@@ -23,16 +23,11 @@
 <meta property="og:site_name" content="MMoYu′s hut">
 <meta property="og:description" content="常用软件的客制化">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227145948658.png">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227150209894.png">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227161834380.png">
-<meta property="og:image" content="https://mmoyu.github.io/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20240105165510326.png">
 <meta property="article:published_time" content="2023-12-22T08:42:47.000Z">
-<meta property="article:modified_time" content="2024-01-30T06:19:58.000Z">
+<meta property="article:modified_time" content="2024-04-26T20:22:59.714Z">
 <meta property="article:author" content="MMoYu">
 <meta property="article:tag" content="IDE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mmoyu.github.io/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227145948658.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -239,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          890 字
+          7.7k 字
         
       </span>
     
@@ -250,7 +245,7 @@
         
         
         
-          8 分钟
+          64 分钟
         
       </span>
     
@@ -313,109 +308,28 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
             
             
-              <div class="markdown-body">
-                
-                <h1>WIN</h1>
-<h2 id="Vscode">Vscode</h2>
-<h3 id="Vscode搜索忽视部分文件夹-文件">Vscode搜索忽视部分文件夹/文件</h3>
-<ul>
-<li>
-<p>ctrl+shift+p = =&gt;settings.json</p>
-</li>
-<li>
-<pre><code class="language-json">在里面添加：
-&#123;
-    &quot;search.exclude&quot;: &#123;
-      &quot;**/out&quot;: true,
-    &#125;,
-&#125;
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs lua"><br>- 需要重启下vscode<br><br>### git <span class="hljs-built_in">status</span>未显示改动，但是VSCODE显示changes <br><span class="hljs-comment">--- 文件权限导致changes提升 = =》忽视文件权限即可</span><br><br>```c<br>项目修改：git <span class="hljs-built_in">config</span> core.filemode <span class="hljs-literal">false</span><br>全局修改：git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global core.filemode false</span><br></code></pre></td></tr></table></figure>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="9b497507f087bf73c46084b99a978e41806a6f92a85d8aac37aea990a849b1f0">6c7403a67b5863e4a8c92de30a55f406425423dabdbb2b610fae16cfe33fa29c5372556b6833a54f707380ddb021d32cd57aed1d69a999833c4142eb48e267a41f9fbf8fd10d9f264162d880a5d9c723278a7c50fceb810eb848172db6a72951ba68f7c34c4f5b888d738c42e884c29b843275d688a42239155b42b08b20c35f02976a557a07c665c59a1d494063d4ddb588ac7690ba125960607626a33f1a04c45019605db92e2648fbb58d148e53b87c8a3fd261b6e56f6c5b9778d905a4aff43c7e7749501b64aa32611a12fb221cc0debed1fcdd35b2a39a4724caeeb102032e6d01b9bbfab7970de47f1e82d963c7c82042d0f009c6fe3f3731a539670044ffb1efa7b7a4513801d9c726f5da95dd3d073fd774ecd3b682cc90a4d4e7818a94ca62fdfa9d4d3437dcf1bac0cbc171cfd07c732a381bff553d67013e571446030360c0705b7cb0ba5ca01f014a0acef161b1501bd8071b78742e57534f32da109408cf6e4657c2fcaab900f71216c871e5dbcd7bbbbe7643b289069ba1cfd5d8a46aa9db98a6f33bdbad03fa562a4c4a8162551cf492c70d5dd98f102456d3e0766f43202e569f97ab55ed96c4dcd140465bbc21be9ac815bc96273e1304551c6cf393f59c1025e6873fb62cfb3de4367c3658cd2834e2b791be46e466a06f604bdc8379b37ce6b19ebc2c07900fc005139b94562e5ce4d8328c014e13bf3953894aa2108a43f9499acafa62533b92e26816c96c692e0fd7bcb2777829ecdde0eefa75c653ca3eabd5cb0fffd673a787ff7adc009fe2b37501f9601e23e21f7d2d744a1a0c948942d711e53197452d256d492cdb4eff4e82af34cae0a8ab2cb649ee43ea2ab03ab420b4bb816e9b8dfb7864de800d936f4735d76e219bd298fd51e24a03a2b14274563f7561c114960da465888ee378215ef1ffcfda483eda0fee6d8d6143e0c6e3acf5a258bd85f6f5c777a13bdd0283d915eb1ed217e3665ad4d565208c09a97bfe5ec1a5afba30bc07b4a55bfb6fbc09adeb919e237f31bf5fd57d6f9bd52412e2ee806fcf9b5c8f657e33921acaf4b084b644c61ac2534af5890dc133920f7e23f13d79d5c3145566ceec4519a0027df401668c7b4ed49f6fca943653ec9ceff0556f5c180401892658bb3ab8b1d65c97fa0b2f67051b988e08100c6fcf174fd06598bd90590f0e7a16739f721993a4079889c10b7aafeb6604d7b47ebb3ef666b68ffb989c358ba52296435380be4ff2d11798aac67733fda99208eaf86f92542ef60060180a0f65043e084f85a85a638cd04b8c090ae5ab369249d334714a56f7c70d8132d21c3c824930161c1d8aec0282e9b300ec97aeebba9985276acf73df492cc45fed04610eac49661503da5eea70e49f2a28d8affdf82e4c3168020ff75ac094f94f762bba092bdc9578829ef3f1df5648b8f1eb3d14c0373fe8f5be82a76213b7e195a3d73bb6b2f7eb71edbada72e53802803b27a16013a8d45e74171ddd5041812b825075d6adf9f2b83d1ddabf7b1391474fa87944189950dbf869c0fc027c315e8f27b6fdf8892594254c19ae3e9b5f39d0897b4417d6c1e43471f593ac6f0500702d9fc482607e81a363eb85648926548e1f8d2793aaf322552670327fa135812628127342d330b1aa73a98db2158b7f1122e4334c8d65fe080754d1f5bc5d65f2afb80c8ac1346d34bffe1cdb94e16161b85fcf968b8cf24c46b0d62c92cbe50ccd241fa3f10a337de0496510e09030cf987fcfa6bf9aa493311f2cea2ee1368d9ac6299d145a455c87dfac9ea7129e2510d589a92bb4b5d378c7914c10526b22ec8bc902ed4163b7b9db2a4ff96f83c149e9a7f232f393d2cfd2f2c9e4ff915b486fadc577d888cc627b2f36a4f254b364ca75023ebebcc37025add42d37475a57e32a7582cb1b2d20d416d0e983ee02928b0b66be676936ff8dd35843cf6339a5bd658041768c7fc478a035176a56b8ba1c72c7dac5c9ebabfe6d7b1e0543cc24fed7fd795a114ed3a9104cc7db3991baafa10eaf494233094e08ff1ca10dd53e4c98ba89e2a13fc4df625a5cf4f21c3c0b127990a81c5579617e3dc66dfc9957229e77ad0b17479b70f0067fd1964726926f2543282b50b88c6324a3d45901baca168ce11fa6fc91c810a8713de604ca05d9facdb0e40ccb76dfde9babbb481baf54ee5649980d8879dd4989b507bf95838c9aad59009765ae13e08f6e86b1462be3fd6e8f7cc8c55bdc2c1a885a2548c7e50b67cf79ba260028d6bf249e2e31b851bb471618310bbe2834454f7b05b94efe1b873a5e812a40a730e73cd469726f172d64f8fcac392ef1ebc7055695fac8a27b4e22911de8cd9dac86e21be7aa83071eedd3d1b2fd2cb0ad9f5c2b1e14066c69f0ad0f5540e5b733ad226805a86dac7cbb837d48ac165bcf1e551c9c4c076ecf79bab4fd33ad4ac2d4289cbe835c6347b625cc52464e0b6d37f3838bab1fee93734de6a4f1b36dccb42981b1961560a3d28a1faf7b6ed0e4a857455f5d9dc739cc17a0ff582bef569971358975b31e6be0ebbb8a4d7b515eef32f6045b522401d9fcd825107745e3fdcc5e845254997d9a7210f30e864f01abd511ef8800e6a457ab7cad11c7f5a4ba1c78f94807f7538e47242e7a3efd50764d91681273df2c6f48dab64c839721f0530344a6dbde4380effe51ac6705f3914be75c33af91829d0b0416ecd77fff4e208a3ee0c57f9555be43b9b91a221df04f095482594c417421f3b259a5caadce5631efc7d8366a9516bed5092fc7d7966ae5555c984b2595b392840019c22c97b8e449d618041879ace4960abc690fd73f148d98832813425f66eb1552c4a4e7b0314af3142ae1a363e8f6b21e9924f3a4a5214d925c469453ce040d3fd5f07f2efe65fec3a0271120424771f8a7c9559b6d62919de30457cc0e0d4890c4f463c5683991ebd21d52eb1faea464780f2aaf39c730a6938e0d57efce69e1c89e862d669b01f3ecf783fe2875c68f75f3bd1d3f526c11575f39ff8991115b9dfbdf0388ebde6deee297df16b8001561ef98f1d9d50760212bfda74d32b62c308e6443f31faa5f38d0df90f29580d4cfd15f849d6db6cc356ffae3b948d524398c7c14bfcb7015585afbc1ef493b3c28dbef8b66b928c83ad14f797a4faeeb41e44e17d95bf8a57b56862df16c5071f4ae6c0cec8634beb4d1fa552ac7ef62b1499d63476efb24e16ee09ddb3474fb7c2da080c3d7e03d3338d5ba29afb695cf00ea57de480b65f3e67627a8147431f37651e5c74a5547bd3eb301207a19f0036ab52503a4d2061dd91a69c70aa6a90da99736bd61c8e4222b95de4fdcd4a23ed2c2b1a63c73d0d0f4d89d399134bd8b131c55f4c76b6343cb42782cd0694bdf0e21683cc31374e4a55ed7602e270133a6181871f33a7c84d74b209eee7b82c147e5ad028503965c67556617a51e8a92090de64bbe9d48af221a00303be3fc456487a8e59b18e5ae579d1c4ab2d79790899278e3f00a29b946ab77db0944652579cda4052394c113b0dab9689cb745177b2a4ae1478cdde1b7b14d20e49c8c6402b2dc0c5cce961119aa22a9fe3bd3976b1e99b52a1153b1ad0abe0b6a9235dd8ff5015f954abe77406ab3e093a9c31fb8c21e87bc64694c8dfc80814e31b61f4b0fa79d4fa73b5c51aa65087b1bf086703af8994e2110f637543a27712ac2c0fd9aeddf5443fda7c3d0ad1494c806479594fea3fc6de6782d0b2b7bead8a9c6fe7c089969016d1bffbca8e56d7bb5b7309e9484ffc7e3aa0ba0b5ce43c7a8659beab7d9e3cb73a41527229e164c633c9a8e6c2b0253238fb1a23939a6cbf912d8e18db3051e71d9e590a6e8e7135a4a19ee251c29c4d8555491a1423b557b7e9b36f2e8bb61b67ec7e910b9edbdc0152caf16b37bc5e88d9a5a1c9dd0827e8c7c519e54d6ae9e8d0308cf71201b9fb9ebafc4886befe37a099c3e6d572c73f56cd1576b1cd80e4d145e7e6cdcb10c2f333a9297b597730506879e4e4bfdb887bc3dbda266ca34bd86c98503bddd55aa60ea3b4fcd02432a812520b1213e880a8a4f66e42ab33ae6df8cff4bfa05125c505d82915c8f00368bc6f1fc2462095a0da3dae6605cf22a69f6c2e746bcf248e648d1de4131e0d70a46943df28f825d94cada3ec7bb6ca8278cf345e0f6ccf9f4f1929459fb35ce8a27d01d5f641d69e8b3105f4424a70882b3dab2962989d36145a4822ce8981584f73a86e5a2b0a47e1c1fa1ada0007faee21d76b62eee8d8d2fb99554fb75f8f0903a788f912a419a46e2ed18c89dbd1fe3ad9deea80f7358af612aa7332e96ce4fe4c36aab4b1fe805485b3b260b70a333ce73ad89fa5af979990787da3ecae20b80f3c975daf91f58c7fbdaf956f157dd06b7868c51abf09afac0c8389ed96fcaf8af4fe5aca5363ff7abcf58eb563feee42f013b8ba1159be012619a5c12124ab120ebd7f7eee880b36e0aca1318544934728cc8ac56bad8044e01b27995fdfa5de7e2b69dd90f13d67537663ba0605707c0ac707fa056f01d3894f8cb6c7a9b6ca2a616264b0861a2022bad923a8b1bcfeffd56b6b7619f7228e0725aec0ba9ec923b1d8c21d07e8dff54469f5c41ff765baf12a4a1db7b2748286d9d0be97d299604c676f3d495e50c60989dcfa27eb2db0ecabfd4f29c09ec46bf1ea4da7bc35ac438e22e931d85286ddbc7db4d15ef3bdef9523f554d122de6b3072d74d90970e10f7b22493fbad3c06f9151b387bc5033c2fcaec3eb56637cdee97ebe17554502f172aa5c663a73475b2c82f3284d93012a5cc36faadf512a52ed1bbc542c77e3b93dca9cd2d1830ad58e5e480703407ec6b0593838e189cc57c22067470d1d19674a46425a3ca1304450aa3e6be15b8c1a2cd9e6b53122d3357985a121fb1c2a3ae0ecedef9f806d4f95b33c8398793aede137169ddde90b8956205a3daaaf31a9fee9f03c8a9abaaaac1be738aeeeaf5f4e58ad1734115a1e1442c53c063bad035b63ab222d1d02b594453662a85f69a0cad4fd5d5ec1f8cca8d14a07a85a5d6954af84457c5fa51f9b3a7d39a3c76238d0df865884ddcc5880861c22a7b303c2d9bc46967770109ac638c01c315816829bc369a2758c006275e9e3fe70ce323d8e20d2219630ba5d9a51264ab3650bbed10c995109afd858cd94a28a127984bfe3c4f4cb5a2964896633dac0cbb658e7cdf542b8e5fb982ad43cad0ab15da0fdebe7a2bb3bc62deb06a46c32bfbcbe7f0adabc5d0ac2490456a14ff7ea3f03bf17b245b65534e330de351b98dd27e621f0130f475f89bbcc751cb80c3cc89738ed78afee4217cea0379f5fd65394a6d199ade2526d6474a2f716ee1cd34dacab24806871</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-</code></pre>
-</li>
-</ul>
-<h2 id="VScode-刷-Leetcode">VScode 刷 Leetcode</h2>
-<ul>
-<li>建议使用cookie的方式登陆</li>
-<li>查看cookie的方式
-<ul>
-<li>登陆leetcode cn</li>
-<li>选择网络</li>
-<li>F12</li>
-<li>F5</li>
-<li>找到graphel/</li>
-<li>找到cookie字段</li>
-<li>复制该字段后的字符</li>
-</ul>
-</li>
-</ul>
-<hr>
-<hr>
-<h2 id="EDGE">EDGE</h2>
-<h3 id="使用的插件记录">使用的插件记录</h3>
-<ul>
-<li>
-<p>local history<br>
-— 本地修改历史记录</p>
-</li>
-<li>
-<p>vscode-icons<br>
-— 侧边图标美化，更清晰</p>
-</li>
-<li>
-<p>Bracket Pair Colorizer2<br>
-— 函数作用域的高亮区分</p>
-</li>
-</ul>
-<hr>
-<hr>
-<h2 id="Bcompare">Bcompare</h2>
-<h4 id="忽略文件格式对比">忽略文件格式对比</h4>
-<p><img src="/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227145948658.png" srcset="/img/loading.gif" lazyload alt="image-20231227145948658"></p>
-<hr>
-<hr>
-<h2 id="source-insight">source insight</h2>
-<h4 id="快捷操作">快捷操作</h4>
-<ul>
-<li>返回上一次操作 ctrl+,</li>
-</ul>
-<hr>
-<h3 id="主题更换">主题更换</h3>
-<p><img src="/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227150209894.png" srcset="/img/loading.gif" lazyload alt="image-20231227150209894"></p>
-<hr>
-<h3 id="代码流程图">代码流程图</h3>
-<p><img src="/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20231227161834380.png" srcset="/img/loading.gif" lazyload alt="image-20231227161834380"></p>
-<hr>
-<hr>
-<h2 id="Clash-for-windows">Clash for windows</h2>
-<ul>
-<li>开代理后导致的部分如Microsoft store等上不去<br>
-<img src="/2023/12/22/ide%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E8%AE%B0%E5%BD%95/image-20240105165510326.png" srcset="/img/loading.gif" lazyload alt="image-20240105165510326"></li>
-</ul>
-<p>= =&gt; 添加下代理的限制</p>
-<hr>
-<h2 id="NVM-选择-NODEJS版本">NVM 选择 NODEJS版本</h2>
-<ul>
-<li>nvm ls available</li>
-<li>nvm install 14.10.0</li>
-<li>nvm use node</li>
-</ul>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
-    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
-        panel.getElementsByClassName('fold-title')[0].onclick = function() {
-            panel.classList.toggle("collapsed");
-            panel.classList.toggle("expanded");
-        }
-    });
-})(document);</script>
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -456,7 +370,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年1月30日</div>
+          <div>2024年4月27日</div>
         </div>
       
       
@@ -666,6 +580,23 @@
     });
   });
 </script>
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>

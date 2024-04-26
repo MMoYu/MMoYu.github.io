@@ -23,16 +23,12 @@
 <meta property="og:site_name" content="MMoYu′s hut">
 <meta property="og:description" content="初稿">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
-<meta property="og:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png">
-<meta property="og:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png">
 <meta property="article:published_time" content="2024-03-22T06:09:49.120Z">
-<meta property="article:modified_time" content="2024-01-05T01:59:20.000Z">
+<meta property="article:modified_time" content="2024-04-26T20:22:58.196Z">
 <meta property="article:author" content="MMoYu">
 <meta property="article:tag" content="Audio">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mmoyu.github.io/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -239,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          14k 字
         
       </span>
     
@@ -250,7 +246,7 @@
         
         
         
-          17 分钟
+          119 分钟
         
       </span>
     
@@ -313,201 +309,28 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
             
             
-              <div class="markdown-body">
-                
-                <h4 id="Linux-Audio基本概念">Linux_Audio基本概念</h4>
-<p>—基于RK开发板</p>
-<h5 id="术语、缩略语及定义">术语、缩略语及定义</h5>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">术语/定义</th>
-<th>英文对应词</th>
-<th>含  义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">DAI</td>
-<td>Digital Audio Interface</td>
-<td>数字音频接口</td>
-</tr>
-<tr>
-<td style="text-align:center">PCM</td>
-<td>Pulse Code Modulation</td>
-<td>脉冲编码调制：是一种模拟信号的数字化方法</td>
-</tr>
-<tr>
-<td style="text-align:center">PDM</td>
-<td>Pulse Density Modulation</td>
-<td>脉冲密度调制：是一种用数字信号表示模拟信号的调制方法</td>
-</tr>
-<tr>
-<td style="text-align:center">I2S</td>
-<td>Inter-IC Sound Bus</td>
-<td>集成电路内置音频总线；</td>
-</tr>
-<tr>
-<td style="text-align:center">SPDIF（S/PDIF）</td>
-<td>Sony/Phillips Digital Interface（索尼/飞利浦数字接口）</td>
-<td>光纤音频输出</td>
-</tr>
-<tr>
-<td style="text-align:center">TDM</td>
-<td>Time-division multiplexing</td>
-<td>时分复用：为了传输多通道数据；</td>
-</tr>
-<tr>
-<td style="text-align:center">VAD</td>
-<td>Voice Active Detection</td>
-<td>语音检测</td>
-</tr>
-<tr>
-<td style="text-align:center">采样率</td>
-<td></td>
-<td>每秒钟取得声音样本的次数</td>
-</tr>
-<tr>
-<td style="text-align:center">通道数</td>
-<td></td>
-<td>音频的采集和播放是可以叠加的；声道数一般表示声音录制时的音源数量或回放时相应的扬声器数量</td>
-</tr>
-<tr>
-<td style="text-align:center">帧</td>
-<td></td>
-<td>记录了一个声音单元，其长度为样本长度与通道数的乘积，一段音频数据就是由苦干帧组成的</td>
-</tr>
-<tr>
-<td style="text-align:center">帧大小</td>
-<td></td>
-<td>一帧占用多少字节</td>
-</tr>
-<tr>
-<td style="text-align:center">周期</td>
-<td></td>
-<td>音频设备一次处理所需要的桢数，取决于硬件缓冲区的大小，对于音频设备的数据访问以及音频数据的存储，都是以此为单位</td>
-</tr>
-<tr>
-<td style="text-align:center">码率</td>
-<td></td>
-<td>每秒的数据量，码率 = 采样率 * 帧大小</td>
-</tr>
-</tbody>
-</table>
-<h6 id="PCM">PCM:</h6>
-<p>脉冲编码调制的完整过程，简单概括为：<strong>采样，量化，编码</strong>。<br>
-—通过等时间隔（即采样率时钟周期）采样将模拟信号数字化的方法；<br>
-—理论上可以传输单声道，双声道立体声（I2S）和多声道（TDM）<img src="/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906150439768.png" srcset="/img/loading.gif" lazyload alt="image-20230906150439768"></p>
-<hr>
-<h6 id="PDM">PDM</h6>
-<p>—PDM（Pulse Density Modulation）是一种用数字信号表示模拟信号的调制方法。同为将模拟量转换为数字量的方法</p>
-<p>—在以PDM方式作为模数转换方法的应用接收端，需要用到抽取滤波器（Decimation Filter）将密密麻麻的0和1代表的密度分量转换为幅值分量，而PCM得到的就已经是幅值相关的数字分量。图20示意为通过PDM方式数字化的正弦波。</p>
-<p><img src="/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906151408106.png" srcset="/img/loading.gif" lazyload alt="image-20230906151408106"></p>
-<p>PDM_CLK的上升沿采样左声道数据，在PDM_CLK下降沿采样右声道数据，具体如下所示：<br>
-<img src="/2024/03/22/Linux_Audio%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/image-20230906152439748.png" srcset="/img/loading.gif" lazyload alt="image-20230906152439748"></p>
-<hr>
-<h6 id="I2S">I2S</h6>
-<ul>
-<li>
-<p>I2S简介<br>
-— I2S有3个主要信号：SCLK、LRCK、SDATA，有时为了使系统间能够更好的同步，还需要另外传输一个信号MCLK，称为主时钟，也叫系统时钟（System Clock），是采样频率的256或384倍；PCM类型的数据，因此可以说I2S是PCM接口的特例；<br>
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/Richard_Brown/article/details/123835282">I2S、TDM详细介绍_i2s tdm_嵌入式老林的博客-CSDN博客</a></p>
-<ul>
-<li>支持全双工/半双工</li>
-<li>支持主/从模式</li>
-</ul>
-</li>
-<li>
-<p>I2S信号线<br>
-— <mark>只定义了三根信号线</mark>: 位时钟线、左右声道时钟线、数据传输线</p>
-<blockquote>
-<p>— 时钟信号线 SCK/SCLK = BLCK = 位时钟线</p>
-<ul>
-<li>==SCK的频率 = 声道数 * 采样频率 * 采样位数==</li>
-</ul>
-<p>— 字段选择信号线 WS<br>
-==字段选择信号WS，也叫帧时钟：LRCLK，用于切换左右声道的数据。WS的频率 = 采样频率==</p>
-<ul>
-<li>WS为0，表示正在传输的是左声道的数据；</li>
-<li>WS为1，表示正在传输的是右声道的数据；</li>
-</ul>
-<p>— 串行数据线 SD</p>
-<ul>
-<li>就是用二进制补码表示的音频数据。I2S串行数据在传输的时候，由高位(MSB)到低位(LSB)依次进行传输<br>
-<mark>SDI：数据输入端口； SDO：数据输出端口</mark></li>
-</ul>
-</blockquote>
-<p>— 主时钟线 MCLK <mark>额外加的,由master做主，I2S协议中没有定义这个</mark></p>
-<ul>
-<li>MCLK的频率 = 256或者512 * ==采样频率==</li>
-</ul>
-</li>
-<li>
-<p>I2S操作模式<br>
-— I2S分为三种不同的操作模式，分别为标准I2S模式、左对齐模式和右对齐模式：</p>
-<ul>
-<li>I2S Phillips Standard I2S标准格式</li>
-<li>Left Justified Standard 左对齐格式</li>
-<li>Right Justified Standard 右对齐格式</li>
-</ul>
-</li>
-<li>
-<p>==TDM模式==</p>
-</li>
-</ul>
-<hr>
-<h6 id="VAD">VAD</h6>
-<p>— Voice Active Detection：语音检测</p>
-<ul>
-<li>
-<p>概述<br>
-— VAD是最简单也是最重要的语音模块；主要区分是语音还是不是语音，二分类问题</p>
-</li>
-<li>
-<p>VAD数据来源</p>
-<ul>
-<li>自行采集或自行测试：纯净语音+任意噪声，自行调节信噪比；</li>
-<li>开源VAD数据</li>
-</ul>
-</li>
-<li>
-<p>常见VAD</p>
-<ul>
-<li>基于传统的DSP（一般是基于高斯统计模型，也有基于门限的hard code）</li>
-<li>基于AI模型</li>
-</ul>
-</li>
-<li>
-<p>VAD实现方式</p>
-<p>— 采用阈值过滤的方式；feature越多，系统越稳定，但计算量也会越大；</p>
-<ul>
-<li>能量：语音信息一般在2khz以下，噪声一般在2khz以上；无法排除低频噪声</li>
-<li>过零率：噪声波动较大，语音信息不会</li>
-<li>SNR</li>
-<li>倒谱：能量倒谱确定了语音信号的的基频</li>
-<li>谐波</li>
-<li>长时特征</li>
-</ul>
-<p>— 采用统计模型：目前工业界很少用了</p>
-<p>— AIVAD</p>
-</li>
-</ul>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script><script type="text/javascript">(function (document) {
-    [].forEach.call(document.getElementsByClassName('fold'), function(panel) {
-        panel.getElementsByClassName('fold-title')[0].onclick = function() {
-            panel.classList.toggle("collapsed");
-            panel.classList.toggle("expanded");
-        }
-    });
-})(document);</script>
-                
-              </div>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ae9c7ec09797962aa1213ef39c8013cf5d648724709fc67c863b011271fead20">6c7403a67b5863e4a8c92de30a55f406f0fe2e79dd0e5c36ec1bfb5beb312bc1b705469148a278aa374aeeea71697b4328bd4babdfee51336c67f7f6f9339307539f8dd155f57aa2e5b648d06af27931d914022e983caaf8b69ae9d1b97078670b009b4ede49c1e1ebece8620b8fa87930dccb8098936e49f35107f92946ae3a5119c67238855683fad7ddf3cb857cf2b3c66d2c523f1f0f89b75f845a9c8c2ee29ae8d8e9b7a88b88034278ea29a2fce1d8e84875d81fc6f71f84f6ff393a0ad141fbb96cd5afcad20965d0e3ac14e85d2a7bdfb54f7d4a3312e7a743be54c530c59e958eb008b2821ab8d3ed61be0df293ec5a53fed30bddfd3bf4a74591c67c69251a43131fd96ad33160eaed48d94ecf233f4635ee571b5c791437fe256cd5714b48664866f855cd372b44804cdcd82d1ac3fcc2daf238840bb0e486f276b26a0cf08fc5ee0c3f559ddd676f0b5f79ae4f4f4828c203c09950f44f9adb683ad03e9fff0700a8940f025eefeca2b3e4736c424cb77ee89b73d550f5fe87ba104d1ab0623c40ed3627ae6dc8bf387626d3f4a9674aefc3fbdfe1351f7f61671b3c7410130d3ddc070ad2abc4d882f0bb3baf7ea16ffb71a34f4431c66cabde78f2e4391bfb0ca9d4bc3b3d630d03768013260e75263e74ce7e58dcf8cb8c814b72435cc75b5eaa72f7f8f9955fcee83f014f07bcb2699002b77bbf2b89bebcad76900946bf0d562a131fdc4d4134a45674532f14216f6df0ea95aae892ccd768b792c9e8fe5519a74b073788813f841ae281d0b31fa896b447a25afd1270f42df3e11cbdcc78628e52aea68d28d4b74137ee84f19508e839ce987efbfae85e817b75a45ecbe46911bebdcc1c7bd9b41fdfdd16c80cde642219c6077ecc63e414c632b4cd9e0f30c142129737a1f8e2317cb83d835d4fcc52a7be6d7ee98df869384846c2ef37ec15667d10790120328ddff4ac77ff7c846ccfd559207af458de42afde7131af73391fd38f938aa6613b9ea368522f386b78e0c4f6c5e5ee2ff37fb057977711b9a963d622073709866cf61efc22c37c505597c2919b2275b09191644be392aa3465b6d145f92777a6384d44cdf1820cbad09bbd06f8a1da41b9b41b796c89eed50d738715c37bac5d4cbe779c7ae9a4846bafd366244bac8794798beb4d0a92f85cc45a4eefc1ac794dfb1269c558455dd75d10989d2fa9122020acd716726fc598599cbb2d4dff604c9b55574f7fec2c4f1b8b79238eb368439a18566a6ab89385bb2cccef9399683bec4f18d321e65011202d183b9e90a1c0f367a84cd16e6df448e144861af4e5ef805028fe999bdbb6d50d2570685310fc4ad1f96b4f3df24bd60e61a8ceaee64a24fff27b47a7fc015d07defed724d0d8c3c2f1bdecba08b8d0f66c017845a2d6b4cbb6226126361975cc20c74898b12d09ecfaa6fc87171fe2dfac64828ac3af07b525b04edd7a3146c0e071be8c9b80166105b61293e1ac53a02681819879af031b8d84608cc5c2299fe8ddbf292e43871d4ec27687683c9561b9704a5a05bb38f492b4587a08e9bb729591c71b21a76b3d77ab1a685c52bf991eef228632b8d7bd87319321434084410ae6c67ad89ec2648adc5de0ab0a0840941db1b711465eb3d45b3ed62f5c06b6dead0c4cbee4d7db90ce315945e81f07c265fe718dd0a35a272bb1529c7895813e4e350ba853e8876d81e23ed76f46d3f844b9b5656b14239fe84317f3633d1f4128ec8be6ee8c478a63e9a929a5e889e7a971ddcc8fa287b7c118692a8eaf3a5878cf08a2c88159e6657cbcef6c6561a9956dee4f47f0152ac71932e718f8d6439cce53e436934096be75862aab2638a4ee0013ab1201e2b0f60ab0546f11e1c4dddb507e70a7fbe28037dd72ab664814993e493c73a88fe456fcd754e4d8d2204928b5d520ff876e3767b2a9ca8460ceb326f213ee00870f24ac899fcce070f55d503efb59dd0ebe6bfd0caceb92e53429f6d35cc362cc53c1a88ab40ab68919e8ee940c44e2d1ef77d08ac7e518d78f79d5e291a38cf18329587f9e5b13e65e93300c41af67dd90fe3eb8ed30055f0026c4f6fc42839e7c8f13a6e12f7150c3ed56c6920837fa4f144b27c283190588f8df067775608fe62df2f28c0763a05212b50520a792f3b8a4a722ad088469177c5622c1bf061d22dcaf3c15f6ca1271a96624f5c175ce5ccd48a4683f6b6054d3af50d952ae62b3196e53dfc64f41ddee77e060d19f255d084c706d8961cab0aad53479ba3396c11098a2bb28afc892ab97d9c07aa050f847b1283aea23551d31489993bdcddaaae3886478fc95318e3cba44b8f9966a25ffa6fe747e9e75367c827819b5fba0fc91c0dc320b4e48223a4ae0cf92087b3f48c64815721f67cb89423a6e23cf7e0e23fd9f77b951060615a41e271ca811698ab8c75aa4448bc3811954af4957255e569ceb0febf62e475362c22094a8263efb970e9be56f411c16d923f193f6bbb9f8084ee74617010b966788921109e5ac86afe6f2d686989d65771fea95842130ce7ce8233f91d3e10e6e94ec4349fefae47b4d3130467a113be5ee9a9d6aa12dd4f9163e51c9884483d0c88d888fc93fa3a3167870e6ede83c9dc2c8ffe4feac320f767a9e0a4603dae1f180488e3a5e9f322b7e6bb14cb9bd7bec314470f5f7adb13cf91c3f2d52516ad4d9d1c17ae0a6cabfa3c9dd93b420f0641551d6e6fb21bed15903f84445844008da79739926df6548fbd73b2190c2bfeefb32d03438faf510e057b43345dbabfafe7f228937c19ed6a2f0cf9d4331716255cc98841c7b532ac645f3997389a0be35f03b105d04dbb4670f8c89124c835f0823bb2379d6b2067980aebaa5f5e69c09c09b42a42cb8aeb69086a96d296e8e206156eb824cfe06e40899eb21af6059760008d747bbd17fb560a21411c15db2161fb11841d9eb8a80e3765cf2df20f2b9db16ff208dd9dfdac7a1c3c6977a76147d1392e66493f51f03747262f5e4ac71aa9464f4c9c1328a81adf62fbe6818c8a82ac5c190d056a4393a4d0a868937d8cf6fbeab04fcd9d040ee8c41bc324100a5efae3b5608988a5dedcc99177fe4223f8f659e8a295fc4fee281696cac80a48292ac1e372963e004f1957591319f6ab3ce0848f3be6279e634f9c2a949eca3b9a8182bdaa0a9a4c0f4c83f575e2e7900b432c89257af2a80acf8bcf117f794e6f7d7844b2a27a9085f649e56dbbc10baab7a2a0e159991673dff9a9569871b3edc1bbc43f35c288bc13913d9feb5b57c909e9d0b73d102db33e01688ad824c8c33054ba71bd8a4d3985cab240dff857a99b81c5ae3bea0919b84ec66039332742cb49b0d33770d7cd75c81c1519520e55b9cc8cd7687cfd4ded9ae65304267deeb6cbadb7e6106413d92139a608851d65ca5f4ad525d907a20f894e429610465f9dfd836dc5d5da9609e606de996ce57320cd6b62e5a65f17f3598d4e4a1ab5e07d4c4778fb0f49fd746e92af22144f4510ac785801fccba0a7827fb3e36024c111bfc141b397429f5c4c25a8f358ca4aaeec92f097af5aaba18543fe3cf5f12d1a6d8831b56b76b0220ad51b65fabcac6cfd3195ccef25cd1ff1bfea7b7fa28c5f514a6de5a694e4e1b45e4764a30273cfdd32391931647ab91ab3a812dbe7e752f383ee326b52655e3578262719cd922d152f5f8aaaf495931da3a33beb36bb3d4c228988ce46a62816952a6a7a0e34b6b88073c1c01119128cc13325c68dd3553bd58dd379a03632ebc9fd94a26e1c125702e1dae6547ed59546217cb179a95ea74f7902e4dbd666dc65339e567049a3fdb9ead88681d99b8562b71e7175a0d006c80f313b7f78db9122f77a91929994580763fc641547fb6843ae530e65813934a55fe956160517ab80cedfd4c32e1a06b2bd2cb9a276408c23955fbb964396c7a77a997d1526bed6d9708b05ecc776c66f6068eaaf8654c114f374114aab5857bb2d8caa933dd89a15dc319f56c89498d3f9f61a74ec1f00f966cecf861586b203850dfd12605a6e2ca0f3df4ee16f34fda94b004bb6fb401461c1bd4fd90e4ec838ab0e47a3ca57eb0de48840e29dc9b8bef769d5eeb4db77b6d53a2dbf44320ee253ac1d250496f85ee7d8578933c0a53a7a658d0e720ace2a73b5ca7b0877aa242ee32db0bd82295a3d842c9849e841e6bf8c4cb859646eb18032aaa06531da0c7fff73195b7ef069fbcb5fcee9281e1f69ac89d4ea34f0cc99610e2b77f472e4f5170ee726c915014d6f807220d1938594a2a5d3e712f649f8ee3d7ff4c4aa61f0479284db441e4c4c35fdf671a21bf7d70365d1b0bcdfdbab0ac22f3f78f633bd9c5b5c6882f10e1c51cc4f0696bd9e98842e9d024f0990457d2e1c3be32e07a45e569ed12809b2a768f326a19f42fc4c4e112a53a6154b2a76a62bc939b8c43773ae9132ba173df6afd87a5ac611f93d854b94fd9c030fadafa40d843f661fb9c08199ea7b89aff6c78078c9d4e4fae00b6ef14bd70f058d89bc7c36939ef65fe9ea63b91c064ff226fc4bc02ca73f8eaae7f7e1efec147be3a61a7ca7979bd86183e4123013daf32222d96ae31e6ece3e3df0c3e89e0d4f466422fcb1e40a6b31164b005646ea65002bc253e34b22b31f553156ed0f841bc297fac32a86926fdc5daed9fb49863ef56379ac6d4c9590ca246b42624a1c9185c5723cbec62ac4b7a24066e8b406907ae638e36e3a853472f632c02fa1bb2922ad5e3480e44a86b406b56b2b25e367dce4b1e405f3cf02a677312b63b8f018277c4322fcda974af81d61b8841b50b03fdf758788e370ed974ecda6a884a397740134bc0e4b0ce9f8cda376a027069aef1ada8ba039e24e22ec92a45fa2345c67e845dc30934efa7215276223356596500abaddd4af276ba5d78727e7cc97e928d27f619c4a6a8de76526957b963de8717f9a100b8f7f7365a22e3f12dcde05356742fc123fcf7a2fb726bd2dbeb50abe32b5bd4390969e95256a127350254604fd72dc8d50be63115442c0b993cd602412ed5cffe2bc879adabef91f81fd84031db9dd920a022969fb733d04b6f7ee62fb62cbfa4f7f7698ddb7967c415114e4a444f43e6737e1d4ca3149b88286a210fa5b63e6c7279885430bc2cb89ab67153707eb8f1ceb5c7ae58d773464b6f3856eeda34792a468fd67f71a4322a6d76f059223358da3ae855ddbd1d011545abae42a43f208b18854f457c9433ba3efd1faa607ce5ef8c5c14c1215d2b9eafef231f4abb62c9c9ecc45326f3729921d51e286f79671d8a51ab8ba3b096e1a968e5480b89dbe5b810c1c726c706c233c1aaf33e5524aea5b26f3637de2310b816ca8d68076ca649ce4326fa800f8d8580eb4e01433bb0bc1a9a19fdbc03f2527c652db05bc72ed5184ec8b44ca483c0630617b36e6d6e34e7e701c3ca666db36fc4183d8328c8afdc9b62a19add564a4b4c8f835a8e0dbf9aee4781457800f984ce14c930be8027922cd21c28e55647039a214551fd160511ee1e40ef337f0e875584e44bd56adfce38de544af57c51bd30e30d4809ebd07985782853654502668a924c8c05e82e8deaf34a35d063a856a74fa96dc078c82d56f66410c287abe176c9f9bd55fa01bb902da7126a69e0ad8c024ea21aaf21e94120573dad1b2242d383691346efe46770357fb3a4ae786d599399d2ffd2aedadd0772d6f44fad1682d97c3657172e7191f97ba9e8250feecfb2612d45c8b96a4750ebecf752d4db8c0c9e02a10e508df30fe6de7672b96efede35e2aa322299e6f2fa38f120e6266e7d884c4ce8f26a0aa9c767159a1157ffc8f21e681c8489eb8805531203257e44b71b33f8897c33091a10995db722ced50fadf68943b6be9a3363aed2d7afc0d2d6cb5aacca2b6ca54da6e5ecc1d4a8bf3fcd59f3ad6898babc3bd33d807aa9ad3ba61401e4e10e4388422b18e95f6b4b8b66853721cbd5469efe04b26947d31b7b806366e65b40edec4b38e5fb4b58d3e5226f45474b6553391ad9e4014bd253673c82c0e98d2f05ddd551c9e73df88b2f55c9340ed7e9aefc46b8ba79af4a3a368f19b3a2906cc726dd2d4dd7b123cb72568457c13f7e9efba1cbcd70e81104dd985119457eb2d32e4cd2c9e0775a9ba1cccd2a2f678b29282c090d1992cdef2153276b6256e174501ccc9a0e8f39ba5be78fc647679ea1109fea7e074c10f0826579816f0a20d1dab2b5dfd56b8ffdb30c79a1b3d287b82fa81a95efdbe2d138cf7d782031e98506ad68ade57674f59d7c72e87b64ea14152a7175624a54c11b9ad83665106fd815e9b1bef14a43ff4741819ee42aea6f2df066f297d1a41249eda6f393658f407685530f63965b1b62bcc860bdee13904b6971488e9556907256df10ada53cd546151e8a4f9c3a2ab2fe44422255002c984effa977903a1f689e06548fe8a41b65bf9c7c79e359f6743e1184a830bd0809d429abde4f78cbd929be7164fba259f5d5b807814eb4b81297194cd9d9fc7239873b7012fe8af5770f2fea91a3a663055c6e68ad5ba590ff55ff1d9b6aca6363361853eae305bba8bd209057f68dcad0f7bfe8bcd6b71b3a6df043ab61d8520106bdbcbe2f546360a4ee640ff5c15db984a6bc1b43ca33e8742311b43c61e4e2b7825846954f45822f3165128912e997d54eeceb2306e69cffe708f7fb63050303fb6ef528cdd2851aa0276f26be17d00486a372edcba1ec2227011dca02b40577936992d82cb30f22d26d0c2b63ea490175e7066961ce09f51131d37b4308c0e492a64fe8fa2c36f5b9935e9324ee8d38335efa251e20f9d3b70d1668e040831d69fff2e1a75e77df318d7db0fb2b87b5bb4797082ec2a0ad2bd285706c846123cbb0896f7a990972164fe2ebad571820cec30d82ca7395cde64e85a20ec19d4b42003888cd46c072fc09c1680384ed00845f687135060e9005881e08382bc5cbc0066dcec680ab7ffcd8cced62f479e21e52ab107cae833b29194383fc7eac53946e236312ad5d900a903040a77eba0eebcbbb4292e512cc58bea5a5fdb0733af4ca715f36f316a0fe5cf64644641348fcd335cce9abf46e30b060d48d84e801f880c9943731569b3ba869dc722b929fbc428a096df72f4290c42eff1569eec44ef915cef70f59741206de9d87b6e3c5f333469af1e51d7b21f9d8508449dcd88a207cfc8f4480a180e8364937cb27d34fe2dee964c9c1d6bd468099903946193b40fd3275abcfbb4f76b61c5c5062d277d5c3e05ce46f90317270543d30a49cee7f146b8aa4db836fc77ea12a8879ca95aa09263d10fc6e734ca6aed65cc6cfa25c29f2bbd7478d38a2259cad60c22c238f242ce65315035a36593d8a26fdf9082fb0f967a9871dce6756d230c605e79949741fa36483a85b689beb7682eae2ed522d4e2a22d375265d2785eb609190de0fe5b137b318158de85c9f994218a69426fb26d634c874c66a0e2bb9f727c1cb3bf533631d3f3d36ab944e90b2561f9ab7edaf6ea40d2fa562a52d3d4d2a54dd6e8d35b2db1a825721e736d534bc61f04f8c13bbd2b56515bf1c27a7496992525eeb10556a56951be53050e7441e7629fce9b3d3c6e88ecf64da98fb39255b935db8a4352c0e8e071c8f7eb5488a43a4a379e5127d269e6bbb6a8ff2d97e598debff82dee23f4f1fa55a82cf7a2e5d0083635e9527b7b7813d325c2591db48964e6154c245f1e4942f84e916950e87bfd314224afb37d371d735e4159e79d35c47af0b7e773ea8c6cb088d6041d23aec3330cbbff9aef6c8d9aa65bfbda153e8993c53ff858d4c6bba935326175abde93f987351e3e51e528095b976eeed4c3fe64ae58ffd2235b0c460130c99abd9d094f51141d709f827fda213d12eaececfcc03806bc0fa440407ab69c987f06383d74cb6613ea2071bdc2ccda3cc9fa2101317bfb10e38604ffd316f44427d0b300f25bba588d24716f148ca19c068a18b01a2930835ece4e881ae427d13bd0a7c43f83df0b3fd35e3cd7e76da692cb061e12787191076cf7b20cee44fdc875a627913db86aa692c35bede8d39e7f85a27b1373c69ab144c8e666e8bcd3bdc3ca72f002580b0623124d7e9e03c36ea4e264e7aac2bb79cc4c03756ac6ac7ae6c4b08e27b56873b92d892bafed8abbe7f11aab9a84970ca1ba60a63543d5df4111327b6364cc21c83c619cfb3ec1333b58134a27c8d0e1d958b05e57b7b006c88cc198c25e418823d7abd0c954ca1bb8f887c2dde556929e0ecfc20fd7e8c88a839cbc415a34fa88b4aeea52d0511a93054ef83592383b8a43ac01e5bac58595c37925ffea7c636ac526ce50aa52bedf685f14e9af7ad8ae9e0fabde49c917aa6401f2e260f3459ac59b99d332fcc73511ec3bea52f85c42c5acc132235c4e519579adea6327399059b4a15ac19643cf385e6cf4cb8aaf6bd8f6078afb4daedaae2545e431f94450712342d28bf69628ffd2c431b0018c73fbb74d3cf92d7889f656a5eaf9cf449d1a918d9d96bfa43c3d203c8acc9859f965c5b265f0ed80f8b8ade760c93d9146fad5c6a3649fa0ce3c05e14e4a1d7ac663b051f850ce0afcb44018a1497bc87bd4b502c024c3d48effa4d31883f627a5937b30252f388e4a5cf299398aa41b9d1d324fd8d47d412c3e921555a3ff6979191344d71dd94b74af632dfe194b1fae589ea1b37be360f0628ededc30c57af8e5f8306dad3dadfa960af90a3e8158bd4af4e6d3081a93f33252119a06e449955cbdcd544cad6c347a6bd8a31934a5c51dc38ae9be36e29b61754d9fea9303ec01ea5ea8667d15a327eb3e810748b36c0cd26ed3c5e15a690a0f2b3a147f4b3ce898dd6167e713d59edb62ae52253dca0b74c8735c75292b3736293173b87badcf05e9006aa20f8eda9e77f0ecc76ce722bb42e5cf7b57d119abb85f7a5e3bbd64dcbc18f10fde5a27ed616ffadf007ab1fc7d0ed67d393cb7bb00aaf2a482072647113fabb779c1683858358d536dfa70e9790c8ef02f11c35a3c5c3f8910cc29b26067b1b022118a23e38bf031bef50b44be6be459c313e43984a103058d354a7b36b9a21225af5f05893dbe6ee458821a2c81c0b74ddb9494936d19e0067478db23f9dc44a5af2e27b4de49eba47c18c05da54798239b5609cb57264e2d68be7582995fa5cadfb0f0144f7099124ce8426bef0b8f06f2202817534b57c302b3402a7b282ee4a81841e12bb1f8c140c1b5d329ec405fcb7ed90757b9ef505881448fbb97369d72428027412aed669d8299d29218346a4e49504648d1bd7f9c3a21a8133fbc5194bc457e7adcad94619cf09e083857bd0c458473e7b3279eee3223c4162184166ceb7597d4bcf0428aa94e6c49fa8d24cb8f4103b08ff36e9f7efcfee3e5b06f3d612e5c27ac9f639643d223b0d4a65a49332e2e9d98eb380550c6d94fb888abc9858ab69ede45983a3c4857403ec9644efb2d11d21c046f4ca99a8541acfaf47e17c256a88656247af688968f63b6cbbf08739bc4aa6ad12a5a504a5df842d40d19ee5e3b5e6e7e7166b6a2d3f57939f3720f6f62f96d713e30d1a155809b165abfd2ad4b34725c6e0843980b750f905c633ca8eb873c2a096bcdaae397126ce7598df40ed223d82191a0443ea6f1ced6844d0876b5e51c9e31cb3697bce18474a94323ece1325ea2d9b11a5e6c8750769a8fad5fbd109800ff687a57b74b797ccf2f031d9a4390a1834704c229260fec9c98316ce8f931fc987d14344aaf113bd45e21068fe78208fba2f082c46e262707bc3022ab4458aead91cd3317d0367f18a86da8986ddf5537a9da9bbbd905d67de1a3cb92d7846e75007fcf80a76d12201ab4d6464b92f986dbea38e6af8bfad19eb585e69d1dc82c8bbd652834b2d692813e19551983119ea9f1ec49beb2cf38f48b78b7af3916749fb7bf59b749780c7b7eab1500c</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
+
+              
             
             <hr/>
             <div>
@@ -550,7 +373,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年1月5日</div>
+          <div>2024年4月27日</div>
         </div>
       
       
@@ -760,6 +583,23 @@
     });
   });
 </script>
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
